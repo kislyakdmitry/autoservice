@@ -12,7 +12,7 @@
             </column>
             <column name="name" type="varchar(255)"/>
             <column name="price" type="currency"/>
-            <column name="ordered" type="boolean"/>
+            <column name="ordered" type="boolean" defaultValueBoolean="false"/>
             <column name="created" type="datetime"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -93,5 +93,14 @@
                                  constraintName="fk_contractsCars_contract"
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
+    </changeSet>
+    <changeSet author="dmitry" id="2">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter="\nGO"
+                 path="initData/init.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
     </changeSet>
 </databaseChangeLog>

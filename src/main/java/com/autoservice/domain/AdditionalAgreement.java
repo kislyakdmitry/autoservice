@@ -19,7 +19,7 @@ public class AdditionalAgreement {
     @JoinColumn(name = "contract_id")
     private Contract contract;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "car_id")
     private Car car;
 
