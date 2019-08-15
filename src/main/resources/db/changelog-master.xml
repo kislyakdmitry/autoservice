@@ -94,13 +94,4 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
     </changeSet>
-    <changeSet author="dmitry" id="2">
-        <sqlFile dbms="postgresql"
-                 encoding="utf8"
-                 endDelimiter="\nGO"
-                 path="initData/init.sql"
-                 relativeToChangelogFile="true"
-                 splitStatements="true"
-                 stripComments="true"/>
-    </changeSet>
 </databaseChangeLog>
