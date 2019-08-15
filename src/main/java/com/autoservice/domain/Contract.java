@@ -1,5 +1,8 @@
 package com.autoservice.domain;
 
+import com.autoservice.domain.Views.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,11 +14,15 @@ public class Contract {
     @Id
     @SequenceGenerator(name = "contracts_id_seq", sequenceName = "contracts_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contracts_id_seq")
+    @JsonView(Views.Contracts.class)
     private Long id;
 
     @Column(name = "start_time")
+    @JsonView(Views.Contracts.class)
     private LocalDateTime startTime;
+
     @Column(name = "end_time")
+    @JsonView(Views.Contracts.class)
     private LocalDateTime endTime;
 
     @ManyToOne

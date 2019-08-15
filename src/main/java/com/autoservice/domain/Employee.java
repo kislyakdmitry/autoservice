@@ -2,6 +2,8 @@ package com.autoservice.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,9 +12,15 @@ import java.util.Objects;
 public class Employee {
 
     @Id
-    @SequenceGenerator(name="employees_id_seq",sequenceName="employees_id_seq", allocationSize=1)
+    @SequenceGenerator(name = "employees_id_seq", sequenceName = "employees_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_id_seq")
     private Long id;
+
+    private String username;
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "first_name")
     private String firstName;
@@ -20,7 +28,7 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employee")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private List<Contract> contracts;
 
     private LocalDateTime created;
@@ -46,6 +54,34 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Collection<Role> getAuthorities() {
+        return Collections.singleton(role);
     }
 
     public String getFirstName() {

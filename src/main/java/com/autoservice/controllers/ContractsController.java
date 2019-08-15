@@ -1,7 +1,9 @@
 package com.autoservice.controllers;
 
 import com.autoservice.domain.Contract;
+import com.autoservice.domain.Views.Views;
 import com.autoservice.services.ContractsService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ public class ContractsController {
     }
 
     @GetMapping
+    @JsonView(Views.Contracts.class)
     public ResponseEntity<List<Contract>> getAllContracts() {
         return ResponseEntity.ok(contractsService.getAllContracts());
     }
