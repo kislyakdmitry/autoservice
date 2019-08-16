@@ -31,6 +31,7 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
+    @JsonView(Views.Contracts.class)
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)
