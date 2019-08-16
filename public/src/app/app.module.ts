@@ -7,14 +7,17 @@ import { AppComponent } from './app.component';
 import { ContractsComponent } from './contracts/contracts.component'
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule }   from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContractsComponent
+    ContractsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -23,6 +26,8 @@ import { HttpClientModule }   from '@angular/common/http';
     HttpClientModule,
     MatButtonModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
     FlexLayoutModule
   ],
   providers: [],

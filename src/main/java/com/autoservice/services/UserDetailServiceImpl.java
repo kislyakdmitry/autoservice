@@ -1,4 +1,3 @@
-/*
 package com.autoservice.services;
 
 import com.autoservice.domain.Customer;
@@ -36,4 +35,3 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
 
 }
-*/

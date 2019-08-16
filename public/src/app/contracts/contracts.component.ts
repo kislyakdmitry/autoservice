@@ -15,10 +15,8 @@ export class ContractsComponent {
     constructor(private contractsService: ContractsService){}
 
     ngOnInit(){
-        //console.log(this.contractsService.getData());
         this.contractsService.getData().subscribe((data: Contract[]) => {
             this.contracts = data;
-            console.log(this.contracts);
         });
     }
 }
