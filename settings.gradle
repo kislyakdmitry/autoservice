@@ -1,4 +1,4 @@
-rootProject.name = 'autoservice'
-include 'application'
-include 'data'
+rootProject.name = 'autoservice-app'
 
+include 'data'
+include 'application'

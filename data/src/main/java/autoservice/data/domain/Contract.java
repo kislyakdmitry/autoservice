@@ -1,6 +1,6 @@
 package autoservice.data.domain;
 
-import com.autoservice.domain.Views.Views;
+import autoservice.data.domain.views.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
