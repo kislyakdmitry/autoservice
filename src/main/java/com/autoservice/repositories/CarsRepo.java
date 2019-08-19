@@ -5,9 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CarsRepo extends CrudRepository<Car, Long> {
     List<Car> findAll();
-    Car save(Car car);
+    Optional<Car> findById(Long id);
 }

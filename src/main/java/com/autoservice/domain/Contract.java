@@ -111,4 +111,12 @@ public class Contract {
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 }

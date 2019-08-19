@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ContractsRepo extends CrudRepository<Contract, Long> {
     List<Contract> findAll();
     Optional<Contract> findById(Long id);
+    Contract save(Contract contract);
 }

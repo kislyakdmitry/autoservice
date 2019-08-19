@@ -1,26 +1,14 @@
 package com.autoservice.services;
 
 import com.autoservice.domain.Contract;
-import com.autoservice.exceptions.ContractNotFoundException;
-import com.autoservice.repositories.ContractsRepo;
-import org.springframework.stereotype.Service;
+import com.autoservice.dto.ContractDto;
 
 import java.util.List;
 
-@Service
-public class ContractsService {
-    private ContractsRepo contractsRepo;
+public interface ContractsService {
+    Contract getContractById(Long id);
 
-    public ContractsService(ContractsRepo contractsRepo) {
-        this.contractsRepo = contractsRepo;
-    }
+    List<Contract> getAllContracts();
 
-    public Contract getContractById(Long id) {
-        return contractsRepo.findById(id)
-                .orElseThrow(() -> new ContractNotFoundException("Contract " + id + " not found"));
-    }
-
-    public List<Contract> getAllContracts() {
-        return contractsRepo.findAll();
-    }
+    Contract save(ContractDto contractDto);
 }

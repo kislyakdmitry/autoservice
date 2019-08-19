@@ -1,5 +1,6 @@
 package com.autoservice.exceptions;
 
+import com.autoservice.domain.Car;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,18 @@ public class Handler {
     @ExceptionHandler(value = {ContractNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleContractNotFoundException(ContractNotFoundException ex) {
+        logger.debug(ex.getMessage());
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleUserNotFoundException(UserNotFoundException ex) {
+        logger.debug(ex.getMessage());
+    }
+
+    @ExceptionHandler(value = {CarNotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleCarNotFoundException(CarNotFoundException ex) {
         logger.debug(ex.getMessage());
     }
 }

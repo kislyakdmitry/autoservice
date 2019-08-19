@@ -1,4 +1,4 @@
-package com.autoservice.services;
+package com.autoservice.services.impl;
 
 import com.autoservice.domain.Customer;
 import com.autoservice.repositories.CustomersRepo;
