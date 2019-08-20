@@ -2166,9 +2166,9 @@ dom-serialize@^2.2.0:
     extend "^3.0.0"
     void-elements "^2.0.0"
 
-autoservice.data.domain-browser@^1.1.1:
+autoservice.app.domain-browser@^1.1.1:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/autoservice.data.domain-browser/-/autoservice.data.domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
+  resolved "https://registry.yarnpkg.com/autoservice.app.domain-browser/-/autoservice.app.domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
   integrity sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==
 
 duplexify@^3.4.2, duplexify@^3.6.0:
@@ -4438,7 +4438,7 @@ node-libs-browser@^2.0.0:
     console-browserify "^1.1.0"
     constants-browserify "^1.0.0"
     crypto-browserify "^3.11.0"
-    autoservice.data.domain-browser "^1.1.1"
+    autoservice.app.domain-browser "^1.1.1"
     events "^3.0.0"
     https-browserify "^1.0.0"
     os-browserify "^0.3.0"
