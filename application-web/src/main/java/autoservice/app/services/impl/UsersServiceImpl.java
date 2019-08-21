@@ -1,13 +1,9 @@
 package autoservice.app.services.impl;
 
-import autoservice.app.exceptions.UserNotFoundException;
-import autoservice.app.services.UsersService;
 import autoservice.app.domain.Customer;
 import autoservice.app.repositories.CustomersRepo;
-import org.springframework.security.core.context.SecurityContextHolder;
+import autoservice.app.services.UsersService;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -19,8 +15,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Customer getCurrentUser() {
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        return customersRepo.findByUsername(principal.getName())
-                .orElseThrow(() -> new UserNotFoundException("User " + principal.getName() + " not found"));
+        //Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        return customersRepo.findByUsername("user1").get();
+        /*return customersRepo.findByUsername(principal.getName())
+                .orElseThrow(() -> new UserNotFoundException("User " + principal.getName() + " not found"));*/
     }
 }

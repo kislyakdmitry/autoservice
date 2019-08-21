@@ -3,9 +3,10 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="1" author="dmitry" context="dev, prod">
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="dmitry" context="dev, prod, test">
         <createTable tableName="cars">
             <column name="id" type="serial">
                 <constraints primaryKey="true" nullable="false"/>
@@ -13,7 +14,7 @@
             <column name="name" type="varchar(255)"/>
             <column name="price" type="currency"/>
             <column name="ordered" type="boolean" defaultValueBoolean="false"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <createTable tableName="customers">
@@ -22,7 +23,7 @@
             </column>
             <column name="first_name" type="varchar(255)"/>
             <column name="last_name" type="varchar(255)"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <createTable tableName="employees">
@@ -31,7 +32,7 @@
             </column>
             <column name="first_name" type="varchar(255)"/>
             <column name="last_name" type="varchar(255)"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <createTable tableName="contracts">
@@ -42,7 +43,7 @@
             <column name="end_time" type="datetime"/>
             <column name="customer_id" type="int"/>
             <column name="employee_id" type="int"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <createTable tableName="additional_agreements">
@@ -51,7 +52,7 @@
             </column>
             <column name="contract_id" type="int"/>
             <column name="car_id" type="int"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <createTable tableName="contracts_cars">
@@ -60,7 +61,7 @@
             </column>
             <column name="car_id" type="int"/>
             <column name="contract_id" type="int"/>
-            <column name="created" type="datetime"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="customer_id"
@@ -94,13 +95,13 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
     </changeSet>
-    <changeSet id="2" author="dmitry" context="dev, prod">
+    <changeSet id="2" author="dmitry" context="dev, prod, test">
         <addColumn tableName="customers" schemaName="public">
             <column name="username" type="varchar(255)"/>
             <column name="password" type="varchar(255)"/>
         </addColumn>
     </changeSet>
-    <changeSet id="3" author="dmitry" context="dev, prod">
+    <changeSet id="3" author="dmitry" context="dev, prod, test">
         <addColumn tableName="customers" schemaName="public">
             <column name="role" type="varchar(20)"/>
         </addColumn>
@@ -118,5 +119,37 @@
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"/>
+    </changeSet>
+    <changeSet context="dev, test, prod" id="5" author="dmitry">
+        <createProcedure>
+            CREATE OR REPLACE FUNCTION change_update_time() RETURNS trigger
+            LANGUAGE plpgsql
+            AS $$
+            BEGIN
+            NEW.updated := CURRENT_TIMESTAMP;
+            RETURN NEW;
+            END;
+            $$;
+        </createProcedure>
+        <rollback>
+            DROP FUNCTION change_update_time();
+        </rollback>
+        <sql>
+            DROP TRIGGER IF EXISTS change_update_time ON cars;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON cars FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+            DROP TRIGGER IF EXISTS change_update_time ON contracts;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON contracts FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+            DROP TRIGGER IF EXISTS change_update_time ON employees;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON employees FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+            DROP TRIGGER IF EXISTS change_update_time ON customers;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON customers FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+            DROP TRIGGER IF EXISTS change_update_time ON contracts_cars;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON contracts_cars FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+            DROP TRIGGER IF EXISTS change_update_time ON additional_agreements;
+            CREATE TRIGGER change_update_time BEFORE UPDATE ON additional_agreements FOR EACH ROW EXECUTE PROCEDURE change_update_time();
+        </sql>
+        <rollback>
+            DROP TRIGGER change_update_time ON cars;
+        </rollback>
     </changeSet>
 </databaseChangeLog>

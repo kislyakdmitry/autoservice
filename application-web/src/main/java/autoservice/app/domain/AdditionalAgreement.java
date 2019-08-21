@@ -1,12 +1,15 @@
 package autoservice.app.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "additional_agreements")
-public class AdditionalAgreement {
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class AdditionalAgreement extends GenericEntity {
     @Id
     @SequenceGenerator(
             name = "additional_agreements_id_seq",
@@ -22,60 +25,4 @@ public class AdditionalAgreement {
     @OneToOne
     @JoinColumn(name = "car_id")
     private Car car;
-
-    private LocalDateTime created;
-    private LocalDateTime updated;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AdditionalAgreement that = (AdditionalAgreement) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Contract getContract() {
-        return contract;
-    }
-
-    public void setContract(Contract contract) {
-        this.contract = contract;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
 }

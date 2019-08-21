@@ -23,7 +23,6 @@ repositories { mavenCentral() }
 def changeLog = 'src/main/resources/db/changelog-master.xml'
 
 task('liquibase-dev') << {
-    println "executing dev"
     liquibase {
         activities {
             main {
@@ -38,7 +37,6 @@ task('liquibase-dev') << {
 }
 
 task('liquibase-prod') << {
-    println "executing dev"
     liquibase {
         activities {
             main {
@@ -47,6 +45,20 @@ task('liquibase-prod') << {
                 username 'postgres'
                 password 'root'
                 contexts 'prod'
+            }
+        }
+    }
+}
+
+task('liquibase-test') << {
+    liquibase {
+        activities {
+            main {
+                changeLogFile changeLog
+                url 'jdbc:postgresql://localhost:5432/autoservice-test'
+                username 'postgres'
+                password 'root'
+                contexts 'test'
             }
         }
     }

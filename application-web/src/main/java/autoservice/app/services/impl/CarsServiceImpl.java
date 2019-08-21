@@ -14,7 +14,7 @@ public class CarsServiceImpl implements CarsService {
     @Autowired
     private CarsRepo carsRepo;
 
-    public List<Car> findAll() {
+    public List<Car> getAllCars() {
         return (List<Car>) carsRepo.findAll();
     }
 
