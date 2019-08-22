@@ -1,35 +1,26 @@
 package autoservice.app.repositories;
 
-import autoservice.app.repositories.generic.GenericCrudRepoTest;
 import autoservice.app.domain.Car;
+import autoservice.app.repositories.generic.GenericCrudRepoTest;
 
 import java.math.BigDecimal;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class CarsRepoTest extends GenericCrudRepoTest<CarsRepo, Car, Long> {
 
-public class CarsRepoTest extends GenericCrudRepoTest<CarsRepo, Car> {
+    private static final String NEW_NAME = "Name";
+    private static final BigDecimal NEW_PRICE = BigDecimal.valueOf(100);
+    private static final boolean NEW_ORDERED_STATE = false;
+
     @Override
     public Car getEntity() {
         return new Car();
     }
 
     @Override
-    public void testUpdate() {
-
-        String newName = "Name";
-        BigDecimal newPrice = BigDecimal.valueOf(100);
-        boolean newOrderedState = false;
-
-        Car car = new Car();
-        Long generatedId = super.getRepository().save(car).getId();
-
-        Car savedCar = super.getRepository().findById(generatedId).get();
-        savedCar.setName(newName);
-        savedCar.setPrice(newPrice);
-        savedCar.setOrdered(newOrderedState);
-
-        Car updatedCar = super.getRepository().save(savedCar);
-
-        assertThat(updatedCar).isEqualTo(savedCar);
+    protected Car updateEntity(Car entity) {
+        entity.setName(NEW_NAME);
+        entity.setPrice(NEW_PRICE);
+        entity.setOrdered(NEW_ORDERED_STATE);
+        return entity;
     }
 }

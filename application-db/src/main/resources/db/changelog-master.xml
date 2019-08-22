@@ -11,8 +11,12 @@
             <column name="id" type="serial">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)"/>
-            <column name="price" type="currency"/>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="currency">
+                <constraints nullable="false"/>
+            </column>
             <column name="ordered" type="boolean" defaultValueBoolean="false"/>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
@@ -21,8 +25,12 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="first_name" type="varchar(255)"/>
-            <column name="last_name" type="varchar(255)"/>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -30,8 +38,12 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="first_name" type="varchar(255)"/>
-            <column name="last_name" type="varchar(255)"/>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -39,10 +51,18 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="start_time" type="datetime"/>
-            <column name="end_time" type="datetime"/>
-            <column name="customer_id" type="int"/>
-            <column name="employee_id" type="int"/>
+            <column name="start_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -50,8 +70,12 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="contract_id" type="int"/>
-            <column name="car_id" type="int"/>
+            <column name="contract_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="int">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -59,8 +83,12 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="car_id" type="int"/>
-            <column name="contract_id" type="int"/>
+            <column name="car_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_id" type="int">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -97,18 +125,30 @@
     </changeSet>
     <changeSet id="2" author="dmitry" context="dev, prod, test">
         <addColumn tableName="customers" schemaName="public">
-            <column name="username" type="varchar(255)"/>
-            <column name="password" type="varchar(255)"/>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
         </addColumn>
     </changeSet>
     <changeSet id="3" author="dmitry" context="dev, prod, test">
         <addColumn tableName="customers" schemaName="public">
-            <column name="role" type="varchar(20)"/>
+            <column name="role" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
         </addColumn>
         <addColumn tableName="employees" schemaName="public">
-            <column name="username" type="varchar(255)"/>
-            <column name="password" type="varchar(255)"/>
-            <column name="role" type="varchar(20)"/>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
         </addColumn>
     </changeSet>
     <changeSet author="dmitry" id="4" context="dev">
@@ -119,37 +159,5 @@
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"/>
-    </changeSet>
-    <changeSet context="dev, test, prod" id="5" author="dmitry">
-        <createProcedure>
-            CREATE OR REPLACE FUNCTION change_update_time() RETURNS trigger
-            LANGUAGE plpgsql
-            AS $$
-            BEGIN
-            NEW.updated := CURRENT_TIMESTAMP;
-            RETURN NEW;
-            END;
-            $$;
-        </createProcedure>
-        <rollback>
-            DROP FUNCTION change_update_time();
-        </rollback>
-        <sql>
-            DROP TRIGGER IF EXISTS change_update_time ON cars;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON cars FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-            DROP TRIGGER IF EXISTS change_update_time ON contracts;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON contracts FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-            DROP TRIGGER IF EXISTS change_update_time ON employees;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON employees FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-            DROP TRIGGER IF EXISTS change_update_time ON customers;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON customers FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-            DROP TRIGGER IF EXISTS change_update_time ON contracts_cars;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON contracts_cars FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-            DROP TRIGGER IF EXISTS change_update_time ON additional_agreements;
-            CREATE TRIGGER change_update_time BEFORE UPDATE ON additional_agreements FOR EACH ROW EXECUTE PROCEDURE change_update_time();
-        </sql>
-        <rollback>
-            DROP TRIGGER change_update_time ON cars;
-        </rollback>
     </changeSet>
 </databaseChangeLog>

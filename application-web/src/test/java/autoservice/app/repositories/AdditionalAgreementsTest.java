@@ -2,23 +2,29 @@ package autoservice.app.repositories;
 
 import autoservice.app.domain.AdditionalAgreement;
 import autoservice.app.repositories.generic.GenericCrudRepoTest;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class AdditionalAgreementsTest extends GenericCrudRepoTest<AdditionalAgreementsRepo, AdditionalAgreement, Long> {
 
-public class AdditionalAgreementsTest extends GenericCrudRepoTest<AdditionalAgreementsRepo, AdditionalAgreement> {
+    @Autowired
+    private CarsRepo carsRepo;
+
+    @Autowired
+    private ContractsRepo contractsRepo;
+
+    public AdditionalAgreementsTest(CarsRepo carsRepo, ContractsRepo contractsRepo) {
+        this.carsRepo = carsRepo;
+        this.contractsRepo = contractsRepo;
+    }
+
     @Override
     public AdditionalAgreement getEntity() {
         return new AdditionalAgreement();
     }
 
     @Override
-    public void testUpdate() {
+    protected AdditionalAgreement updateEntity(AdditionalAgreement entity) {
 
-        AdditionalAgreement agreement = new AdditionalAgreement();
-        super.getRepository().save(agreement);
-
-        AdditionalAgreement updatedAgreement = super.getRepository().save(agreement);
-
-        assertThat(agreement).isEqualTo(updatedAgreement);
+        return null;
     }
 }

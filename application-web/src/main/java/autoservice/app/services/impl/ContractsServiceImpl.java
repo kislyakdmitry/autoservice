@@ -7,23 +7,18 @@ import autoservice.app.mappers.ContractMapper;
 import autoservice.app.repositories.ContractsRepo;
 import autoservice.app.services.ContractsService;
 import autoservice.app.services.UsersService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ContractsServiceImpl implements ContractsService {
+
     private ContractsRepo contractsRepo;
     private ContractMapper contractMapper;
     private UsersService usersService;
-
-    public ContractsServiceImpl(ContractsRepo contractsRepo,
-                                ContractMapper contractMapper,
-                                UsersService usersService) {
-        this.contractsRepo = contractsRepo;
-        this.contractMapper = contractMapper;
-        this.usersService = usersService;
-    }
 
     public Contract getContractById(Long id) {
         return contractsRepo.findById(id)

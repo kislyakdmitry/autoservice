@@ -11,8 +11,7 @@ import java.math.BigDecimal;
 @Table(name = "cars")
 @Data
 @EqualsAndHashCode(callSuper = true)
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class Car extends GenericEntity{
+public class Car extends GenericEntity<Long>{
     @Id
     @SequenceGenerator(name="cars_id_seq",sequenceName="cars_id_seq", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cars_id_seq")

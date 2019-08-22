@@ -3,15 +3,14 @@ package autoservice.app.services.impl;
 import autoservice.app.domain.Customer;
 import autoservice.app.repositories.CustomersRepo;
 import autoservice.app.services.UsersService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UsersServiceImpl implements UsersService {
-    private CustomersRepo customersRepo;
 
-    public UsersServiceImpl(CustomersRepo customersRepo) {
-        this.customersRepo = customersRepo;
-    }
+    private CustomersRepo customersRepo;
 
     @Override
     public Customer getCurrentUser() {

@@ -5,7 +5,11 @@ import autoservice.app.repositories.generic.GenericCrudRepoTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomersRepoTest extends GenericCrudRepoTest<CustomersRepo, Customer> {
+public class CustomersRepoTest extends GenericCrudRepoTest<CustomersRepo, Customer, Long> {
+
+    private static final String NEW_USERNAME = "dima123";
+    private static final String NEW_PASSWORD = "1234";
+
 
     @Override
     public Customer getEntity() {
@@ -13,20 +17,7 @@ public class CustomersRepoTest extends GenericCrudRepoTest<CustomersRepo, Custom
     }
 
     @Override
-    public void testUpdate() {
-
-        String newUsername = "dima123";
-        String newPass = "1234";
-
-        Customer customer = new Customer();
-        Long generatedId = super.getRepository().save(customer).getId();
-
-        Customer savedCustomer = super.getRepository().findById(generatedId).get();
-        savedCustomer.setUsername(newUsername);
-        savedCustomer.setPassword(newPass);
-
-        Customer updatedCustomer = super.getRepository().save(savedCustomer);
-
-        assertThat(updatedCustomer).isEqualTo(savedCustomer);
+    protected Customer updateEntity(Customer entity) {
+        return null;
     }
 }

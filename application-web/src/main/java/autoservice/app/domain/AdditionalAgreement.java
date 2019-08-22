@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "additional_agreements")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AdditionalAgreement extends GenericEntity {
+public class AdditionalAgreement extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(
             name = "additional_agreements_id_seq",

@@ -22,24 +22,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public abstract class GenericCrudRepoTest<R extends CrudRepository<E, Long>, E extends GenericEntity> {
+public abstract class GenericCrudRepoTest<R extends CrudRepository<E, ID>, E extends GenericEntity<ID>, ID> {
 
     @Autowired
     private R repository;
 
-    private E entity = getEntity();
-    private Long generatedId;
+    private ID generatedId;
 
-    public abstract E getEntity();
+    protected abstract E getEntity();
+    protected abstract E updateEntity(E entity);
 
     public R getRepository() {
         return repository;
     }
 
+    private ID saveEntity(E entity) {
+        return repository.save(entity).getId();
+    }
+
     @Before
     public void setUp(){
-        E savedEntity = repository.save(entity);
-        generatedId = savedEntity.getId();
+        generatedId = saveEntity(getEntity());
     }
 
     @Test
@@ -50,17 +53,24 @@ public abstract class GenericCrudRepoTest<R extends CrudRepository<E, Long>, E e
 
     @Test
     public void testFindById() {
-        Optional<E> findEntity = repository.findById(generatedId);
-        assertThat(findEntity.isPresent()).isTrue();
+        Optional<E> foundEntity = repository.findById(generatedId);
+        assertThat(foundEntity.isPresent()).isTrue();
     }
 
     @Test
-    public abstract void testUpdate();
+    public void testUpdate() {
+        E entity = getEntity();
+        System.out.println(entity);
+        entity = updateEntity(entity);
+        System.out.println(entity);
+        E updated = repository.save(entity);
+        assertThat(updated).isEqualTo(entity);
+    }
 
     @Test
     public void testDelete() {
         repository.deleteById(generatedId);
-        Optional<E> newContract = repository.findById(generatedId);
-        assertThat(newContract.isPresent()).isFalse();
+        Optional<E> deletedContract = repository.findById(generatedId);
+        assertThat(deletedContract.isPresent()).isFalse();
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "customers")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Customer extends GenericEntity {
+public class Customer extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(name="customers_id_seq",sequenceName="customers_id_seq", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customers_id_seq")

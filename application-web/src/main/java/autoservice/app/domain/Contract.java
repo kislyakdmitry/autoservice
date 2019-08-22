@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "contracts")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Contract extends GenericEntity {
+public class Contract extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(name = "contracts_id_seq", sequenceName = "contracts_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contracts_id_seq")
