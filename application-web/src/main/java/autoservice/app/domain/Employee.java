@@ -21,9 +21,6 @@ public class Employee extends GenericEntity<Long> {
     private String username;
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
     @Column(name = "first_name")
     @JsonView(Views.Contracts.class)
     private String firstName;

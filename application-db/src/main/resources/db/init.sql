@@ -1,19 +1,19 @@
-﻿insert into cars(name, price, created, ordered) values('Audi A4', 100, current_timestamp, true);
-insert into cars(name, price, created, ordered) values('Chevrolet Niva', 100, current_timestamp, true);
-insert into cars(name, price, created, ordered) values('Lada Largus', 100, current_timestamp, true);
-insert into cars(name, price, created, ordered) values('Lada 4x4', 100, current_timestamp, true);
-insert into cars(name, price, created, ordered) values('Toyota RAV 4', 100, current_timestamp, true);
-insert into cars(name, price, created) values('Lada Vesta', 100, current_timestamp);
-insert into cars(name, price, created) values('Renault Duster', 100, current_timestamp);
-insert into cars(name, price, created) values('KIA Rio', 100, current_timestamp);
-insert into cars(name, price, created) values('Lada Granta', 100, current_timestamp);
+﻿insert into cars(name, price) values('Audi A4', 100);
+insert into cars(name, price) values('Chevrolet Niva', 100);
+insert into cars(name, price) values('Lada Largus', 100);
+insert into cars(name, price) values('Lada 4x4', 100);
+insert into cars(name, price) values('Toyota RAV 4', 100);
+insert into cars(name, price) values('Lada Vesta', 100);
+insert into cars(name, price) values('Renault Duster', 100);
+insert into cars(name, price) values('KIA Rio', 100);
+insert into cars(name, price) values('Lada Granta', 100);
 
-insert into employees(first_name, last_name, username, password, role) values('Jon','Snow','employee1', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6', 'EMPLOYEE');
-insert into employees(first_name, last_name, username, password, role) values('Tyrion','Lannister','employee2', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6', 'EMPLOYEE');
-insert into employees(first_name, last_name, username, password, role) values('Daenerys','Targaryen','employee3', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6', 'EMPLOYEE');
-insert into employees(first_name, last_name, username, password, role) values('Ned','Stark','employee4', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6', 'EMPLOYEE');
+insert into employees(first_name, last_name, username, password) values('Jon','Snow','employee1', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
+insert into employees(first_name, last_name, username, password) values('Tyrion','Lannister','employee2', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
+insert into employees(first_name, last_name, username, password) values('Daenerys','Targaryen','employee3', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
+insert into employees(first_name, last_name, username, password) values('Ned','Stark','employee4', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
 
-insert into customers(first_name, last_name, username, password, role) values('Theon','Greyjoy','user1', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6', 'CUSTOMER');
+insert into customers(first_name, last_name) values('Theon','Greyjoy');
 
 insert into contracts(start_time, end_time, employee_id, customer_id) values(current_timestamp, current_timestamp, 1, 1);
 

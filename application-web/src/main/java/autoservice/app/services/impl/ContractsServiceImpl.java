@@ -6,19 +6,23 @@ import autoservice.app.exceptions.ContractNotFoundException;
 import autoservice.app.mappers.ContractMapper;
 import autoservice.app.repositories.ContractsRepo;
 import autoservice.app.services.ContractsService;
-import autoservice.app.services.UsersService;
-import lombok.AllArgsConstructor;
+import autoservice.app.services.CustomersService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class ContractsServiceImpl implements ContractsService {
 
     private ContractsRepo contractsRepo;
     private ContractMapper contractMapper;
-    private UsersService usersService;
+    private CustomersService customersService;
+
+    public ContractsServiceImpl(ContractsRepo contractsRepo, ContractMapper contractMapper, CustomersService customersService) {
+        this.contractsRepo = contractsRepo;
+        this.contractMapper = contractMapper;
+        this.customersService = customersService;
+    }
 
     public Contract getContractById(Long id) {
         return contractsRepo.findById(id)
@@ -31,7 +35,7 @@ public class ContractsServiceImpl implements ContractsService {
 
     public Contract save(ContractDto contractDto) {
         Contract contract = contractMapper.toContract(contractDto);
-        contract.setCustomer(usersService.getCurrentUser());
+        contract.setCustomer(customersService.getCustomerById(1L));
         return contractsRepo.save(contract);
     }
 }

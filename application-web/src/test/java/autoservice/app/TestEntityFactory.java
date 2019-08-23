@@ -1,118 +1,54 @@
 package autoservice.app;
 
 import autoservice.app.domain.*;
-import autoservice.app.repositories.CarsRepo;
-import autoservice.app.repositories.ContractsRepo;
-import autoservice.app.repositories.CustomersRepo;
-import autoservice.app.repositories.EmployeeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.List;
 
-@Component
 public class TestEntityFactory {
-    @Autowired
-    private CarsRepo carsRepo;
 
-    @Autowired
-    private CustomersRepo customersRepo;
-
-    @Autowired
-    private EmployeeRepo employeeRepo;
-
-    @Autowired
-    private ContractsRepo contractsRepo;
-
-    public Car getCar() {
+    public static Car getCar(String name, BigDecimal price) {
         Car car = new Car();
-        car.setName("UAZ");
-        car.setPrice(BigDecimal.valueOf(100));
-        car.setOrdered(false);
+        car.setName(name);
+        car.setPrice(price);
         return car;
     }
 
-    public Car getUpdatedCar() {
-        Car car = new Car();
-        car.setName("BMW");
-        car.setPrice(BigDecimal.valueOf(1000));
-        car.setOrdered(true);
-        return car;
-    }
-
-    public Customer getCustomer() {
+    public static Customer getCustomer(String firstName, String lastName) {
         Customer customer = new Customer();
-        customer.setUsername("customer007");
-        customer.setPassword("password123");
-        customer.setFirstName("Ned");
-        customer.setLastName("Stark");
-        customer.setRole(Role.CUSTOMER);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
         return customer;
     }
 
-    public Customer getUpdatedCustomer() {
-        Customer customer = new Customer();
-        customer.setUsername("customer");
-        customer.setPassword("password");
-        customer.setFirstName("Jon");
-        customer.setLastName("Snow");
-        customer.setRole(Role.CUSTOMER);
-        return customer;
-    }
-
-    public Employee getEmployee() {
+    public static Employee getEmployee(String username, String password, String firstName, String lastName) {
         Employee employee = new Employee();
-        employee.setUsername("customer007");
-        employee.setPassword("password123");
-        employee.setFirstName("Ned");
-        employee.setLastName("Stark");
-        employee.setRole(Role.EMPLOYEE);
+        employee.setUsername(username);
+        employee.setPassword(password);
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
         return employee;
     }
 
-    public Employee getUpdatedEmployee() {
-        Employee employee = new Employee();
-        employee.setUsername("customer");
-        employee.setPassword("password");
-        employee.setFirstName("Jon");
-        employee.setLastName("Snow");
-        employee.setRole(Role.EMPLOYEE);
-        return employee;
-    }
-
-    public Contract getContract() {
+    public static Contract getContract(LocalDateTime startTime,
+                                       LocalDateTime endTime,
+                                       Customer customer,
+                                       Employee employee,
+                                       List<Car> cars) {
         Contract contract = new Contract();
-        contract.setStartTime(LocalDateTime.now());
-        contract.setEndTime(LocalDateTime.now());
-        contract.setCustomer(customersRepo.save(getCustomer()));
-        contract.setEmployee(employeeRepo.save(getEmployee()));
-        contract.setCars(Collections.singletonList(carsRepo.save(getCar())));
+        contract.setStartTime(startTime);
+        contract.setEndTime(endTime);
+        contract.setCustomer(customer);
+        contract.setEmployee(employee);
+        contract.setCars(cars);
         return contract;
     }
 
-    public Contract getUpdatedContract() {
-        Contract contract = new Contract();
-        contract.setStartTime(LocalDateTime.now().minusYears(1));
-        contract.setEndTime(LocalDateTime.now().minusYears(1));
-        contract.setCustomer(customersRepo.save(getUpdatedCustomer()));
-        contract.setEmployee(employeeRepo.save(getUpdatedEmployee()));
-        contract.setCars(Collections.singletonList(carsRepo.save(getUpdatedCar())));
-        return contract;
-    }
-
-    public AdditionalAgreement getAdditionalAgreement() {
+    public static AdditionalAgreement getAdditionalAgreement(Contract contract, Car car) {
         AdditionalAgreement agreement = new AdditionalAgreement();
-        agreement.setContract(contractsRepo.save(getContract()));
-        agreement.setCar(carsRepo.save(getCar()));
-        return agreement;
-    }
-
-    public AdditionalAgreement getUpdatedAdditionalAgreement() {
-        AdditionalAgreement agreement = new AdditionalAgreement();
-        agreement.setContract(contractsRepo.save(getUpdatedContract()));
-        agreement.setCar(carsRepo.save(getUpdatedCar()));
+        agreement.setContract(contract);
+        agreement.setCar(car);
         return agreement;
     }
 }

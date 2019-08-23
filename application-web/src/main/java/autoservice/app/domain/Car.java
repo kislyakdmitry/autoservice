@@ -11,13 +11,12 @@ import java.math.BigDecimal;
 @Table(name = "cars")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Car extends GenericEntity<Long>{
+public class Car extends GenericEntity<Long> {
     @Id
-    @SequenceGenerator(name="cars_id_seq",sequenceName="cars_id_seq", allocationSize=1)
+    @SequenceGenerator(name = "cars_id_seq", sequenceName = "cars_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cars_id_seq")
     private Long id;
 
     private String name;
     private BigDecimal price;
-    private boolean ordered;
 }

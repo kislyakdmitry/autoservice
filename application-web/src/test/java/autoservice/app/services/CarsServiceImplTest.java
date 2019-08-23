@@ -1,5 +1,6 @@
 package autoservice.app.services;
 
+import autoservice.app.TestEntityFactory;
 import autoservice.app.domain.Car;
 import autoservice.app.exceptions.CarNotFoundException;
 import autoservice.app.repositories.CarsRepo;
@@ -10,10 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -36,10 +33,7 @@ public class CarsServiceImplTest {
 
     @Before
     public void setUp() {
-        testCar = new Car();
-        testCar.setName("testCar");
-        testCar.setPrice(BigDecimal.valueOf(100));
-        testCar.setOrdered(true);
+        testCar = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1000));
     }
 
     @Test

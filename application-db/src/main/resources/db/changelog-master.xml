@@ -17,7 +17,6 @@
             <column name="price" type="currency">
                 <constraints nullable="false"/>
             </column>
-            <column name="ordered" type="boolean" defaultValueBoolean="false"/>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
@@ -123,30 +122,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
     </changeSet>
-    <changeSet id="2" author="dmitry" context="dev, prod, test">
-        <addColumn tableName="customers" schemaName="public">
-            <column name="username" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
     <changeSet id="3" author="dmitry" context="dev, prod, test">
-        <addColumn tableName="customers" schemaName="public">
-            <column name="role" type="varchar(20)">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
         <addColumn tableName="employees" schemaName="public">
             <column name="username" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="role" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
         </addColumn>

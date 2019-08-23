@@ -36,10 +36,11 @@ public class ContractsController {
 
     @PostMapping
     public ResponseEntity<Contract> saveContract(@RequestBody ContractDto contractDto) {
-        if (Objects.nonNull(contractDto)) {
-            Contract contract = contractsService.save(contractDto);
-            return ResponseEntity.created(URI.create("contracts/" + contract.getId())).build();
+        if (Objects.isNull(contractDto)) {
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.badRequest().build();
+        Contract contract = contractsService.save(contractDto);
+        return ResponseEntity.created(URI.create("contracts/" + contract.getId())).build();
+
     }
 }

@@ -1,19 +1,25 @@
 package autoservice.app.services.impl;
 
 import autoservice.app.domain.AdditionalAgreement;
+import autoservice.app.dto.AdditionalAgreementDto;
 import autoservice.app.exceptions.AdditionalAgreementNotFound;
+import autoservice.app.mappers.AgreementMapper;
 import autoservice.app.repositories.AdditionalAgreementsRepo;
 import autoservice.app.services.AdditionalAgreementsService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class AdditionalAgreementImpl implements AdditionalAgreementsService {
 
     private AdditionalAgreementsRepo agreementsRepo;
+    private AgreementMapper agreementMapper;
+
+    public AdditionalAgreementImpl(AdditionalAgreementsRepo agreementsRepo, AgreementMapper agreementMapper) {
+        this.agreementsRepo = agreementsRepo;
+        this.agreementMapper = agreementMapper;
+    }
 
     @Override
     public AdditionalAgreement getAdditionalAgreementById(Long id) {
@@ -27,7 +33,7 @@ public class AdditionalAgreementImpl implements AdditionalAgreementsService {
     }
 
     @Override
-    public AdditionalAgreement save(AdditionalAgreement additionalAgreement) {
-        return agreementsRepo.save(additionalAgreement);
+    public AdditionalAgreement save(AdditionalAgreementDto dto) {
+        return agreementsRepo.save(agreementMapper.toAdditionalAgreement(dto));
     }
 }
