@@ -8,10 +8,10 @@ insert into cars(name, price) values('Renault Duster', 100);
 insert into cars(name, price) values('KIA Rio', 100);
 insert into cars(name, price) values('Lada Granta', 100);
 
-insert into employees(first_name, last_name, username, password) values('Jon','Snow','employee1', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
-insert into employees(first_name, last_name, username, password) values('Tyrion','Lannister','employee2', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
-insert into employees(first_name, last_name, username, password) values('Daenerys','Targaryen','employee3', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
-insert into employees(first_name, last_name, username, password) values('Ned','Stark','employee4', '$2y$08$p52qv7Gn1ay7wx6dXOZAIusKtdwiKcFfaxszDmcbcAnkpM2Odqsk6');
+insert into employees(first_name, last_name, username, password) values('Jon','Snow','employee1', 'pass1');
+insert into employees(first_name, last_name, username, password) values('Tyrion','Lannister','employee2', 'pass2');
+insert into employees(first_name, last_name, username, password) values('Daenerys','Targaryen','employee3', 'pass3');
+insert into employees(first_name, last_name, username, password) values('Ned','Stark','employee4', 'pass4');
 
 insert into customers(first_name, last_name) values('Theon','Greyjoy');
 

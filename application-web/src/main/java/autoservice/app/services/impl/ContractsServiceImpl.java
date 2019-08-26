@@ -1,6 +1,7 @@
 package autoservice.app.services.impl;
 
 import autoservice.app.domain.Contract;
+import autoservice.app.domain.Employee;
 import autoservice.app.dto.ContractDto;
 import autoservice.app.exceptions.ContractNotFoundException;
 import autoservice.app.mappers.ContractMapper;
@@ -17,11 +18,13 @@ public class ContractsServiceImpl implements ContractsService {
     private ContractsRepo contractsRepo;
     private ContractMapper contractMapper;
     private CustomersService customersService;
+    private UserDetailsServiceImpl userDetailsService;
 
-    public ContractsServiceImpl(ContractsRepo contractsRepo, ContractMapper contractMapper, CustomersService customersService) {
+    public ContractsServiceImpl(ContractsRepo contractsRepo, ContractMapper contractMapper, CustomersService customersService, UserDetailsServiceImpl userDetailsService) {
         this.contractsRepo = contractsRepo;
         this.contractMapper = contractMapper;
         this.customersService = customersService;
+        this.userDetailsService = userDetailsService;
     }
 
     public Contract getContractById(Long id) {
@@ -30,7 +33,8 @@ public class ContractsServiceImpl implements ContractsService {
     }
 
     public List<Contract> getAllContracts() {
-        return (List<Contract>) contractsRepo.findAll();
+        Employee employee = userDetailsService.getCurrentUser();
+        return employee.getContracts();
     }
 
     public Contract save(ContractDto contractDto) {

@@ -64,26 +64,18 @@ public class ContractsControllerTest {
         this.mockMvc.perform(get(API_URI).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id", is(testContract.getId().intValue())))
-                .andExpect(jsonPath("$[0].startTime", is(TEST_START_TIME.toString())))
-                .andExpect(jsonPath("$[0].endTime", is(TEST_START_TIME.toString())));
-    }
+                .andExpect(jsonPath("$").isNotEmpty());
 
-/*    @Test
-    public void testGetCarById() throws Exception {
-        when(carsService.getCarById(TEST_CAR_ID)).thenReturn(testCar);
-        this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").exists())
-                .andExpect(jsonPath("$.id",is(testCar.getId().intValue())))
-                .andExpect(jsonPath("$.name", is(testCar.getName())))
-                .andExpect(jsonPath("$.price", is(testCar.getPrice().doubleValue())));
     }
 
     @Test
-    public void testGetCarById_NotFound() throws Exception {
-        when(carsService.getCarById(TEST_CAR_ID)).thenThrow(CarNotFoundException.class);
-        this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-    }*/
+    public void testGetCarById() throws Exception {
+        when(contractsService.getContractById(TEST_CONTRACT_ID)).thenReturn(testContract);
+        this.mockMvc.perform(get(API_URI + "/" + TEST_CONTRACT_ID).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(testContract.getId().intValue())))
+                .andExpect(jsonPath("$.employee").exists())
+                .andExpect(jsonPath("$.employee.firstName", is(TEST_EMPLOYEE.getFirstName())))
+                .andExpect(jsonPath("$.employee.lastName", is(TEST_EMPLOYEE.getLastName())));
+    }
 }

@@ -43,12 +43,13 @@ repositories { mavenCentral() }
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    //compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.7.RELEASE'
-    //compile group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.1.6.RELEASE'
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.7.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.1.7.RELEASE'
     compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.6'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.9'
+    
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     compileOnly 'org.projectlombok:lombok:1.18.8'
