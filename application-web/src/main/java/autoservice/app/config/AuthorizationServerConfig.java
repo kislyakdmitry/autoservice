@@ -1,6 +1,7 @@
 package autoservice.app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -12,17 +13,39 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    private static final String CLIEN_ID = "autoservice-client";
-    private static final String CLIENT_SECRET = "$2a$12$XRZzU7cXgB1.fj.NqePksuQX284dCrmMW4K81n3EHgwg/3csgr5PW";
-    private static final String GRANT_TYPE_PASSWORD = "password";
-    private static final String AUTHORIZATION_CODE = "authorization_code";
-    private static final String REFRESH_TOKEN = "refresh_token";
-    private static final String IMPLICIT = "implicit";
-    private static final String SCOPE_READ = "read";
-    private static final String SCOPE_WRITE = "write";
-    private static final String TRUST = "trust";
-    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 60 * 60;
-    private static final int FREFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+
+    @Value("${CLIENT_ID}")
+    private String CLIENT_ID;
+
+    @Value("${CLIENT_SECRET}")
+    private String CLIENT_SECRET;
+
+    @Value("${GRANT_TYPE_PASSWORD}")
+    private String GRANT_TYPE_PASSWORD;
+
+    @Value("${AUTHORIZATION_CODE}")
+    private String AUTHORIZATION_CODE;
+
+    @Value("${REFRESH_TOKEN}")
+    private String REFRESH_TOKEN;
+
+    @Value("${IMPLICIT}")
+    private String IMPLICIT;
+
+    @Value("${SCOPE_READ}")
+    private String SCOPE_READ;
+
+    @Value("${SCOPE_WRITE}")
+    private String SCOPE_WRITE;
+
+    @Value("${TRUST}")
+    private String TRUST;
+
+    @Value("${ACCESS_TOKEN_VALIDITY_SECONDS}")
+    private int ACCESS_TOKEN_VALIDITY_SECONDS;
+
+    @Value("${REFRESH_TOKEN_VALIDITY_SECONDS}")
+    private int REFRESH_TOKEN_VALIDITY_SECONDS;
 
     @Autowired
     private TokenStore tokenStore;
@@ -35,12 +58,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         configurer
                 .inMemory()
-                .withClient(CLIEN_ID)
+                .withClient(CLIENT_ID)
                 .secret(CLIENT_SECRET)
                 .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT )
                 .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
                 .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
-                .refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
+                .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
     }
 
     @Override
