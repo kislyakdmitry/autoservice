@@ -30,11 +30,11 @@ public class Contract extends GenericEntity<Long> {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonView(Views.Contracts.class)
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    @JsonView(Views.Contracts.class)
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.LAZY)

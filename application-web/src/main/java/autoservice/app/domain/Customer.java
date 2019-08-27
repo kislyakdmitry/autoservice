@@ -1,5 +1,6 @@
 package autoservice.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,9 +18,11 @@ public class Customer extends GenericEntity<Long> {
     private Long id;
 
     @Column(name = "first_name")
+    @JsonView(autoservice.app.domain.views.Views.Contracts.class)
     private String firstName;
 
     @Column(name = "last_name")
+    @JsonView(autoservice.app.domain.views.Views.Contracts.class)
     private String lastName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")

@@ -36,4 +36,13 @@ public class ContractMapper {
         }
         return contract;
     }
+
+    public ContractDto toContractDto(Contract contract) {
+        ContractDto contractDto = new ContractDto();
+        contractDto.setId(contract.getId());
+        contractDto.setStartTime(contract.getStartTime());
+        contractDto.setEndTime(contract.getEndTime());
+        contractDto.setCustomer(contract.getCustomer());
+        return contractDto;
+    }
 }

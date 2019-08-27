@@ -9,7 +9,7 @@ import { ResourceService } from '../resource.service'
   providers: [ContractsService, ResourceService]
 })
 export class ContractsComponent {
-    displayedColumns: string[] = ['id', 'start_time', 'end_time', 'manager'];
+    displayedColumns: string[] = ['id', 'start_time', 'end_time', 'customer'];
 
     contracts: Contract[] = [];
 

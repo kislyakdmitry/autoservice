@@ -10,7 +10,9 @@ import autoservice.app.services.ContractsService;
 import autoservice.app.services.CustomersService;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContractsServiceImpl implements ContractsService {
@@ -32,9 +34,9 @@ public class ContractsServiceImpl implements ContractsService {
                 .orElseThrow(() -> new ContractNotFoundException("Contract " + id + " not found"));
     }
 
-    public List<Contract> getAllContracts() {
+    public List<ContractDto> getAllContracts() {
         Employee employee = userDetailsService.getCurrentUser();
-        return employee.getContracts();
+        return employee.getContracts().stream().map(contractMapper::toContractDto).collect(Collectors.toList());
     }
 
     public Contract save(ContractDto contractDto) {

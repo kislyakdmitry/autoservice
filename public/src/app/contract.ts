@@ -2,5 +2,5 @@ export class Contract {
     id: number;
     startTime: string;
     endTime: string;
-    employee: any;
+    customer: any;
 }

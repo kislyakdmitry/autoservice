@@ -24,7 +24,7 @@ public class ContractsController {
 
     @GetMapping
     @JsonView(Views.Contracts.class)
-    public ResponseEntity<List<Contract>> getAllContracts() {
+    public ResponseEntity<List<ContractDto>> getAllContracts() {
         return ResponseEntity.ok(contractsService.getAllContracts());
     }
 
