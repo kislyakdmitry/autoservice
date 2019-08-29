@@ -1,0 +1,77 @@
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    id "org.liquibase.gradle" version "2.0.1"
+}
+
+ext { springBootVersion = '2.1.6.RELEASE' }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+jar {
+    baseName = 'app-data'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+
+repositories { mavenCentral() }
+
+def changeLog = 'src/main/resources/db/changelog-master.xml'
+
+task('liquibase-dev') << {
+    liquibase {
+        activities {
+            main {
+                changeLogFile changeLog
+                url 'jdbc:postgresql://localhost:5432/autoservice-dev'
+                username 'postgres'
+                password 'root'
+                contexts 'dev'
+            }
+        }
+    }
+}
+
+task('liquibase-prod') << {
+    liquibase {
+        activities {
+            main {
+                changeLogFile changeLog
+                url 'jdbc:postgresql://localhost:5432/autoservice'
+                username 'postgres'
+                password 'root'
+                contexts 'prod'
+            }
+        }
+    }
+}
+
+task('liquibase-test') << {
+    liquibase {
+        activities {
+            main {
+                changeLogFile changeLog
+                url 'jdbc:postgresql://localhost:5432/autoservice-test'
+                username 'postgres'
+                password 'root'
+                contexts 'test'
+            }
+        }
+    }
+}
+
+dependencies {
+    liquibaseRuntime('org.liquibase:liquibase-core:3.6.2')
+    liquibaseRuntime('org.liquibase:liquibase-groovy-dsl:2.0.1')
+    liquibaseRuntime('org.postgresql:postgresql:42.2.6')
+    liquibaseRuntime('ch.qos.logback:logback-core:1.2.3')
+    liquibaseRuntime('ch.qos.logback:logback-classic:1.2.3')
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
