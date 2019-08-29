@@ -7,6 +7,7 @@ import autoservice.cars.services.CarsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarsServiceImpl implements CarsService {
@@ -17,12 +18,21 @@ public class CarsServiceImpl implements CarsService {
         this.carsRepo = carsRepo;
     }
 
+    @Override
     public List<Car> getAllCars() {
-        return (List<Car>) carsRepo.findAll();
+        List<Car> cars = (List<Car>) carsRepo.findAll();
+        return cars.stream().filter(Car::getAvailable).collect(Collectors.toList());
     }
 
     @Override
     public Car getCarById(Long id) {
         return carsRepo.findById(id).orElseThrow(() -> new CarNotFoundException("Car " + id + " not found"));
+    }
+
+    @Override
+    public void bookCarById(Long carId) {
+        Car car = getCarById(carId);
+        car.setAvailable(false);
+        carsRepo.save(car);
     }
 }
