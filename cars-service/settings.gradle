@@ -1,0 +1,4 @@
+rootProject.name = 'cars-service'
+
+include 'cars-db'
+include 'cars-web'
