@@ -1,19 +1,14 @@
 package autoservice.app;
 
-import autoservice.app.domain.*;
+import autoservice.app.domain.AdditionalAgreement;
+import autoservice.app.domain.Contract;
+import autoservice.app.domain.Customer;
+import autoservice.app.domain.Employee;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class TestEntityFactory {
-
-    public static Car getCar(String name, BigDecimal price) {
-        Car car = new Car();
-        car.setName(name);
-        car.setPrice(price);
-        return car;
-    }
 
     public static Customer getCustomer(String firstName, String lastName) {
         Customer customer = new Customer();
@@ -35,7 +30,7 @@ public class TestEntityFactory {
                                        LocalDateTime endTime,
                                        Customer customer,
                                        Employee employee,
-                                       List<Car> cars) {
+                                       List<String> cars) {
         Contract contract = new Contract();
         contract.setStartTime(startTime);
         contract.setEndTime(endTime);
@@ -45,7 +40,7 @@ public class TestEntityFactory {
         return contract;
     }
 
-    public static AdditionalAgreement getAdditionalAgreement(Contract contract, Car car) {
+    public static AdditionalAgreement getAdditionalAgreement(Contract contract, String car) {
         AdditionalAgreement agreement = new AdditionalAgreement();
         agreement.setContract(contract);
         agreement.setCar(car);

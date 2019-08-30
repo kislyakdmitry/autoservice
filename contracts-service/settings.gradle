@@ -1,4 +1,4 @@
-rootProject.name = 'autoservice-app'
+rootProject.name = 'contracts-service'
 
 include 'contracts-db'
 include 'contracts-web'

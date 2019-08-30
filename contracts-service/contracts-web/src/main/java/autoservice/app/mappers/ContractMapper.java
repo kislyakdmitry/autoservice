@@ -1,8 +1,8 @@
 package autoservice.app.mappers;
 
-import autoservice.app.dto.ContractDto;
 import autoservice.app.domain.Contract;
 import autoservice.app.domain.Employee;
+import autoservice.app.dto.ContractDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,15 +18,15 @@ public class ContractMapper {
             employee.setId(contractDto.getEmployeeId());
             contract.setEmployee(employee);
         }
-        if (Objects.nonNull(contractDto.getCarIds())) {
-            List<Car> cars = new ArrayList<>();
-            for (Long carId: contractDto.getCarIds()) {
-                Car car = new Car();
-                car.setId(carId);
-                cars.add(car);
-            }
-            contract.setCars(cars);
-        }
+/*       if (Objects.nonNull(contractDto.getCarIds())) {
+           List<Car> cars = new ArrayList<>();
+           for (Long carId : contractDto.getCarIds()) {
+               Car car = new Car();
+               car.setId(carId);
+               cars.add(car);
+           }
+           contract.setCars(cars);
+       }*/
         if (Objects.nonNull(contractDto.getStartTime())) {
             contract.setStartTime(contractDto.getStartTime());
         }
@@ -42,6 +42,7 @@ public class ContractMapper {
         contractDto.setStartTime(contract.getStartTime());
         contractDto.setEndTime(contract.getEndTime());
         contractDto.setCustomer(contract.getCustomer());
+        contractDto.setCarVins(contract.getCars());
         return contractDto;
     }
 }

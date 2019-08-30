@@ -39,7 +39,7 @@ public class CarsControllerTest {
 
     @Before
     public void setUp() {
-        testCar = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1000.01), "vin_number");
+        testCar = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1000.01), "vin_number", true);
         testCar.setId(TEST_CAR_ID);
     }
 

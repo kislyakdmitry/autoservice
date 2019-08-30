@@ -27,7 +27,7 @@ task('liquibase-dev') << {
         activities {
             main {
                 changeLogFile changeLog
-                url 'jdbc:postgresql://localhost:5432/autoservice-dev'
+                url 'jdbc:postgresql://localhost:5432/contracts-dev'
                 username 'postgres'
                 password 'root'
                 contexts 'dev'
@@ -41,7 +41,7 @@ task('liquibase-prod') << {
         activities {
             main {
                 changeLogFile changeLog
-                url 'jdbc:postgresql://localhost:5432/autoservice'
+                url 'jdbc:postgresql://localhost:5432/contracts-prod'
                 username 'postgres'
                 password 'root'
                 contexts 'prod'
@@ -55,7 +55,7 @@ task('liquibase-test') << {
         activities {
             main {
                 changeLogFile changeLog
-                url 'jdbc:postgresql://localhost:5432/autoservice-test'
+                url 'jdbc:postgresql://localhost:5432/contracts-test'
                 username 'postgres'
                 password 'root'
                 contexts 'test'

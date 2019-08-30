@@ -15,9 +15,6 @@ import java.util.Collections;
 public class ContractsRepoTest extends GenericCrudRepoTest<ContractsRepo, Contract, Long> {
 
     @Autowired
-    private CarsRepo carsRepo;
-
-    @Autowired
     private EmployeeRepo employeeRepo;
 
     @Autowired
@@ -38,8 +35,8 @@ public class ContractsRepoTest extends GenericCrudRepoTest<ContractsRepo, Contra
     private static final Employee TEST_EMPLOYEE = TestEntityFactory.getEmployee("epm1", "pass", "Daenerys", "Targaryen");
     private static final Employee TEST_UPDATED_EMPLOYEE = TestEntityFactory.getEmployee("epm2", "pass2", "Tyrion", "Lannister");
 
-    private static final Car TEST_CAR = TestEntityFactory.getCar("UAZ", BigDecimal.valueOf(1000));
-    private static final Car TEST_UPDATED_CAR = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1500));
+    private static final String TEST_CAR = "4USBT53544LT26841";
+    private static final String TEST_UPDATED_CAR = "KL1UF756E6B195928";
 
     @Override
     public Contract getEntity() {
@@ -48,7 +45,7 @@ public class ContractsRepoTest extends GenericCrudRepoTest<ContractsRepo, Contra
                 TEST_END_TIME,
                 customersRepo.save(TEST_CUSTOMER),
                 employeeRepo.save(TEST_EMPLOYEE),
-                Collections.singletonList(carsRepo.save(TEST_CAR)));
+                Collections.singletonList(TEST_CAR));
     }
 
     @Override
@@ -58,7 +55,7 @@ public class ContractsRepoTest extends GenericCrudRepoTest<ContractsRepo, Contra
                 TEST_UPDATED_END_TIME,
                 customersRepo.save(TEST_UPDATED_CUSTOMER),
                 employeeRepo.save(TEST_UPDATED_EMPLOYEE),
-                Collections.singletonList(carsRepo.save(TEST_UPDATED_CAR)));
+                Collections.singletonList(TEST_UPDATED_CAR));
         updatedContract.setId(entity.getId());
         return updatedContract;
     }

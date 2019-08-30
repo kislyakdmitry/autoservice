@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "additional_agreements")
@@ -22,7 +23,6 @@ public class AdditionalAgreement extends GenericEntity<Long> {
     @JoinColumn(name = "contract_id")
     private Contract contract;
 
-    @OneToOne
-    @JoinColumn(name = "car_id")
-    private Car car;
+    @Column(name = "car_vin")
+    private String car;
 }

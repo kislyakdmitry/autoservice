@@ -1,5 +1,6 @@
 package autoservice.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,5 +27,6 @@ public class Customer extends GenericEntity<Long> {
     private String lastName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    @JsonIgnore
     private List<Contract> contracts;
 }

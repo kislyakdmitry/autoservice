@@ -43,8 +43,6 @@
             <column name="end_time" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="cars" type="int []">
-            </column>
             <column name="customer_id" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -61,7 +59,21 @@
             <column name="contract_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="cars" type="int []">
+            <column name="car_vin" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated" type="datetime"/>
+        </createTable>
+        <createTable tableName="contracts_cars">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="car_vin" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_id" type="int">
+                <constraints nullable="false"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
@@ -79,6 +91,11 @@
         <addForeignKeyConstraint baseColumnNames="contract_id"
                                  baseTableName="additional_agreements"
                                  constraintName="fk_additionalAgreement_contract"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contracts"/>
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="contracts_cars"
+                                 constraintName="fk_contractsCars_contract"
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
     </changeSet>

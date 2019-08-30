@@ -10,24 +10,21 @@ import java.util.Objects;
 
 @Component
 public class AgreementMapper {
-
-    private CarsService carsService;
     private ContractsService contractsService;
 
-    public AgreementMapper(CarsService carsService, ContractsService contractsService) {
-        this.carsService = carsService;
+    public AgreementMapper(ContractsService contractsService) {
         this.contractsService = contractsService;
     }
 
     public AdditionalAgreement toAdditionalAgreement(AdditionalAgreementDto dto) {
 
         AdditionalAgreement agreement = new AdditionalAgreement();
-
+/*
         if (Objects.nonNull(dto.getCarId())) {
             agreement.setCar(carsService.getCarById(dto.getCarId()));
         } else {
             throw new AdditionalAgreementBadRequest("car_id is not presented");
-        }
+        }*/
 
         if (Objects.nonNull(dto.getContractId())) {
             agreement.setContract(contractsService.getContractById(dto.getContractId()));

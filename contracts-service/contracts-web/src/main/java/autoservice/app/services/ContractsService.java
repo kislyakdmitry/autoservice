@@ -8,7 +8,7 @@ import java.util.List;
 public interface ContractsService {
     Contract getContractById(Long id);
 
-    List<ContractDto> getAllContracts();
+   List<ContractDto> getAllContracts();
 
     Contract save(ContractDto contractDto);
 }

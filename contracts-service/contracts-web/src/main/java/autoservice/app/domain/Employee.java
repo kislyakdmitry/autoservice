@@ -1,7 +1,6 @@
 package autoservice.app.domain;
 
-import autoservice.app.domain.views.Views;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,13 +21,12 @@ public class Employee extends GenericEntity<Long> {
     private String password;
 
     @Column(name = "first_name")
-    @JsonView(Views.Contracts.class)
     private String firstName;
 
     @Column(name = "last_name")
-    @JsonView(Views.Contracts.class)
     private String lastName;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
     private List<Contract> contracts;
 }

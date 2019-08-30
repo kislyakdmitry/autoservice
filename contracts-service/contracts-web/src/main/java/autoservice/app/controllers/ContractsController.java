@@ -23,13 +23,11 @@ public class ContractsController {
     }
 
     @GetMapping
-    @JsonView(Views.Contracts.class)
     public ResponseEntity<List<ContractDto>> getAllContracts() {
         return ResponseEntity.ok(contractsService.getAllContracts());
     }
 
     @GetMapping("/{contractId}")
-    @JsonView(Views.Contracts.class)
     public ResponseEntity<Contract> getContractById(@PathVariable Long contractId) {
         return ResponseEntity.ok(contractsService.getContractById(contractId));
     }

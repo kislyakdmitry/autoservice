@@ -33,7 +33,7 @@ public class CarsServiceImplTest {
 
     @Before
     public void setUp() {
-        testCar = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1000), "vin_number");
+        testCar = TestEntityFactory.getCar("BMW", BigDecimal.valueOf(1000), "vin_number", true);
     }
 
     @Test
