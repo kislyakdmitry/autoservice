@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 
 public class AdditionalAgreementsTest extends GenericCrudRepoTest<AdditionalAgreementsRepo, AdditionalAgreement, Long> {
-
-
     @Autowired
     private EmployeeRepo employeeRepo;
 

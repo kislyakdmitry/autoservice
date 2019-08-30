@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -68,5 +68,11 @@ public class CarsControllerTest {
         when(carsService.getCarById(TEST_CAR_ID)).thenThrow(CarNotFoundException.class);
         this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testBookCar_NotFound() throws Exception {
+        this.mockMvc.perform(put(API_URI + "/" + TEST_CAR_ID + "/book").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
     }
 }
