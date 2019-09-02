@@ -1,14 +1,12 @@
 package autoservice.app.controllers;
 
-import autoservice.app.dto.ContractDto;
-import autoservice.app.services.ContractsService;
 import autoservice.app.domain.Contract;
-import autoservice.app.domain.views.Views;
-import com.fasterxml.jackson.annotation.JsonView;
+import autoservice.app.dto.ContractDto;
+import autoservice.app.dto.ContractSaveDto;
+import autoservice.app.services.ContractsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,12 +31,12 @@ public class ContractsController {
     }
 
     @PostMapping
-    public ResponseEntity<Contract> saveContract(@RequestBody ContractDto contractDto) {
-        if (Objects.isNull(contractDto)) {
+    public ResponseEntity<Contract> saveContract(@RequestBody ContractSaveDto contractSaveDto) {
+        if (Objects.isNull(contractSaveDto)) {
             return ResponseEntity.badRequest().build();
         }
-        Contract contract = contractsService.save(contractDto);
-        return ResponseEntity.created(URI.create("contracts/" + contract.getId())).build();
-
+        System.out.println(contractSaveDto);
+        //Contract contract = contractsService.save(contractDto);
+        return ResponseEntity.ok(new Contract());
     }
 }

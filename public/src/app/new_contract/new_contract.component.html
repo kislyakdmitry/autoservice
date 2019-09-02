@@ -8,15 +8,29 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <div>
+    <mat-form-field style="width: 300px">
+      <input matInput [matDatepicker]="start_date" placeholder="Start date" [formControl]="startDate">
+      <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+      <mat-datepicker #start_date></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field style="width: 300px">
+      <input matInput [matDatepicker]="end_date" placeholder="End date" [formControl]="endDate">
+      <mat-datepicker-toggle matSuffix [for]="end_date"></mat-datepicker-toggle>
+      <mat-datepicker #end_date></mat-datepicker>
+    </mat-form-field>
+  </div>
   <div class="customer_info">
-      <h2>Customer info:</h2>
-      <mat-form-field>
-        <input [(ngModel)]="customerData.firstName" matInput placeholder="First name" required>
-      </mat-form-field>
-      <mat-form-field>
-        <input [(ngModel)]="customerData.lastName" matInput placeholder="Last name" required>
-      </mat-form-field>
-    </div>
+    <h2>Customer info:</h2>
+    <mat-form-field>
+      <input [(ngModel)]="customerData.firstName" matInput placeholder="First name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input [(ngModel)]="customerData.lastName" matInput placeholder="Last name" required>
+    </mat-form-field>
+  </div>
   <button (click)="submit()" mat-raised-button>Submit</button>
 </div>
 <router-outlet></router-outlet>

@@ -75,9 +75,35 @@
             <column name="contract_id" type="int">
                 <constraints nullable="false"/>
             </column>
+            <column name="car_id" type="int">
+                <constraints nullable="false"/>
+            </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
             <column name="updated" type="datetime"/>
         </createTable>
+        <createTable tableName="cars">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vin" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="currency">
+                <constraints nullable="false"/>
+            </column>
+            <column name="available" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated" type="datetime"/>
+        </createTable>
+        <addUniqueConstraint columnNames="vin"
+                             deferrable="true"
+                             schemaName="public"
+                             tableName="cars"/>
         <addForeignKeyConstraint baseColumnNames="customer_id"
                                  baseTableName="contracts"
                                  constraintName="fk_contract_customer"
@@ -98,6 +124,11 @@
                                  constraintName="fk_contractsCars_contract"
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
+        <addForeignKeyConstraint baseColumnNames="car_id"
+                                 baseTableName="contracts_cars"
+                                 constraintName="fk_contractsCars_car"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cars"/>
     </changeSet>
     <changeSet id="3" author="dmitry" context="dev, prod, test">
         <addColumn tableName="employees" schemaName="public">

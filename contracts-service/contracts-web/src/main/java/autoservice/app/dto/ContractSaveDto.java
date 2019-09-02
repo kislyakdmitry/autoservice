@@ -8,19 +8,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class ContractDto {
-
-    private Long id;
-
-    private Long employeeId;
-
+public class ContractSaveDto {
     private Customer customer;
 
-    private List<String> carVins;
+    private List<String> carsVins;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-dd")
     private LocalDate startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-dd")
     private LocalDate endDate;
 }

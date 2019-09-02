@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class Contract extends GenericEntity<Long> {
     private Long id;
 
     @Column(name = "start_time")
-    private LocalDateTime startTime;
+    private LocalDate startTime;
 
     @Column(name = "end_time")
-    private LocalDateTime endTime;
+    private LocalDate endTime;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

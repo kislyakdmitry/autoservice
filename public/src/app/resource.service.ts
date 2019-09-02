@@ -29,6 +29,12 @@ export class ResourceService {
     this.checkCredentials();
     return this.http.get(resourceUrl + "?access_token=" + Cookie.get('access_token'));
   }
+
+  save(resourceUrl, object):Observable<any> {
+    this.checkCredentials();
+    console.log(object)
+    return this.http.post(resourceUrl + "?access_token=" + Cookie.get('access_token'), object);
+  }
  
   saveToken(token){
     var expireDate = new Date().getTime() + (1000 * token.expires_in);

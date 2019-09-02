@@ -10,6 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 
 import { ResourceService } from './resource.service'
 
@@ -37,7 +39,9 @@ import { NewContract } from './new_contract/new_contract.component'
     FlexLayoutModule,
     FormsModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ResourceService],
   bootstrap: [AppComponent]

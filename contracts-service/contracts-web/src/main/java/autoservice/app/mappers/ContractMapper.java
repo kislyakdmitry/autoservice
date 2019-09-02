@@ -27,11 +27,11 @@ public class ContractMapper {
            }
            contract.setCars(cars);
        }*/
-        if (Objects.nonNull(contractDto.getStartTime())) {
-            contract.setStartTime(contractDto.getStartTime());
+        if (Objects.nonNull(contractDto.getStartDate())) {
+            contract.setStartTime(contractDto.getStartDate());
         }
-        if (Objects.nonNull(contractDto.getEndTime())) {
-            contract.setEndTime(contractDto.getEndTime());
+        if (Objects.nonNull(contractDto.getEndDate())) {
+            contract.setEndTime(contractDto.getEndDate());
         }
         return contract;
     }
@@ -39,8 +39,8 @@ public class ContractMapper {
     public ContractDto toContractDto(Contract contract) {
         ContractDto contractDto = new ContractDto();
         contractDto.setId(contract.getId());
-        contractDto.setStartTime(contract.getStartTime());
-        contractDto.setEndTime(contract.getEndTime());
+        contractDto.setStartDate(contract.getStartTime());
+        contractDto.setEndDate(contract.getEndTime());
         contractDto.setCustomer(contract.getCustomer());
         contractDto.setCarVins(contract.getCars());
         return contractDto;

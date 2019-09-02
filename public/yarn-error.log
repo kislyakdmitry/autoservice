@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add moment
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -51,6 +51,7 @@ npm manifest:
       "@angular/platform-browser": "~8.2.0",
       "@angular/platform-browser-dynamic": "~8.2.0",
       "@angular/router": "~8.2.0",
+      "ng2-cookies": "^1.0.12",
       "rxjs": "^6.5.2",
       "tslib": "^1.10.0",
       "zone.js": "~0.9.1"
