@@ -8,6 +8,7 @@ import autoservice.app.repositories.generic.GenericCrudRepoTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
@@ -23,11 +24,11 @@ public class ContractsRepoTest extends GenericCrudRepoTest<ContractsRepo, Contra
     @Autowired
     private ContractsRepo contractsRepo;
 
-    private static final LocalDateTime TEST_START_TIME = LocalDateTime.now();
-    private static final LocalDateTime TEST_UPDATED_START_TIME = LocalDateTime.now().minusYears(1);
+    private static final LocalDate TEST_START_TIME = LocalDate.now();
+    private static final LocalDate TEST_UPDATED_START_TIME = LocalDate.now().minusYears(1);
 
-    private static final LocalDateTime TEST_END_TIME = LocalDateTime.now();
-    private static final LocalDateTime TEST_UPDATED_END_TIME = LocalDateTime.now().minusYears(1);
+    private static final LocalDate TEST_END_TIME = LocalDate.now();
+    private static final LocalDate TEST_UPDATED_END_TIME = LocalDate.now().minusYears(1);
 
     private static final Customer TEST_CUSTOMER = TestEntityFactory.getCustomer("Jon", "Snow");
     private static final Customer TEST_UPDATED_CUSTOMER = TestEntityFactory.getCustomer("Ned", "Stark");

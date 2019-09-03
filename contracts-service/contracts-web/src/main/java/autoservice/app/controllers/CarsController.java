@@ -1,12 +1,10 @@
-package autoservice.cars.controllers;
+package autoservice.app.controllers;
 
-import autoservice.cars.domain.Car;
-import autoservice.cars.services.CarsService;
+import autoservice.app.domain.Car;
+import autoservice.app.services.CarsService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,11 @@ public class CarsController {
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
         return ResponseEntity.ok(carsService.getAllCars());
+    }
+
+    @PostMapping("{carId}/book")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void bookCar(@PathVariable Long carId) {
+        carsService.bookCarById(carId);
     }
 }

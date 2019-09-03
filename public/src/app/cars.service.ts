@@ -8,7 +8,7 @@ import { Car } from './car';
 export class CarsService{
     constructor(private http: HttpClient, private resourceService: ResourceService){}
 
-    private carsUrl = 'http://localhost:8081/api/cars';
+    private carsUrl = 'http://localhost:8080/api/cars';
 
     getData(): Observable<Car[]> {
         return this.resourceService.getResource(this.carsUrl);

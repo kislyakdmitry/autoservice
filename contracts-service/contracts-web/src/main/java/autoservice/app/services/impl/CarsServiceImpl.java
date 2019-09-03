@@ -4,13 +4,16 @@ import autoservice.app.domain.Car;
 import autoservice.app.exceptions.CarNotFoundException;
 import autoservice.app.repositories.CarsRepo;
 import autoservice.app.services.CarsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class CarsServiceImpl implements CarsService {
 
     private CarsRepo carsRepo;
@@ -26,11 +29,16 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void updateCarList(List<Car> cars) {
-        List<Car> updatedCars = new ArrayList<>();
-        List<Car> currentCars = getAllCars();
-        currentCars.stream().filter(car -> !car.getAvailable()).forEach(updatedCars::add);
-        updatedCars.addAll(cars);
+        carsRepo.deleteByAvailable(true);
+        for(Car car: cars) {
+            if (!carsRepo.existsByVin(car.getVin())) {
+                car.setId(null);
+                carsRepo.save(car);
+                log.info("Car vin " + car.getVin() + " added");
+            }
+        }
     }
 
     @Override

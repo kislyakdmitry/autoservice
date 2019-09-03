@@ -1,14 +1,22 @@
 package autoservice.app;
 
-import autoservice.app.domain.AdditionalAgreement;
-import autoservice.app.domain.Contract;
-import autoservice.app.domain.Customer;
-import autoservice.app.domain.Employee;
+import autoservice.app.domain.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class TestEntityFactory {
+
+    public static Car getCar(String name, BigDecimal price, String vin, Boolean available) {
+        Car car = new Car();
+        car.setName(name);
+        car.setPrice(price);
+        car.setVin(vin);
+        car.setAvailable(available);
+        return car;
+    }
 
     public static Customer getCustomer(String firstName, String lastName) {
         Customer customer = new Customer();
@@ -26,8 +34,8 @@ public class TestEntityFactory {
         return employee;
     }
 
-    public static Contract getContract(LocalDateTime startTime,
-                                       LocalDateTime endTime,
+    public static Contract getContract(LocalDate startTime,
+                                       LocalDate endTime,
                                        Customer customer,
                                        Employee employee,
                                        List<String> cars) {

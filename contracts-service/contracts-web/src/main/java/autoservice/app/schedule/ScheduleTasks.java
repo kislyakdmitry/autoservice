@@ -1,6 +1,7 @@
 package autoservice.app.schedule;
 
 import autoservice.app.domain.Car;
+import autoservice.app.services.CarsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,7 +19,13 @@ public class ScheduleTasks {
     @Value("${cars-service.url}")
     private String CARS_API_URL;
 
-    @Scheduled(fixedRate = 20000)
+    private CarsService carsService;
+
+    public ScheduleTasks(CarsService carsService) {
+        this.carsService = carsService;
+    }
+
+    @Scheduled(fixedRate = 100000)
     public void retrieveAvailableCars() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<Car>> response
@@ -26,6 +33,6 @@ public class ScheduleTasks {
         });
         List<Car> cars = response.getBody();
         log.info("Retrieved " + response.getBody().size() + " cars");
-
+        carsService.updateCarList(cars);
     }
 }
