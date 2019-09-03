@@ -7,7 +7,7 @@ import { Contract } from '../contract';
 
 @Component({
   templateUrl: 'new_contract.component.html',
-  providers: [CarsService,ContractsService]
+  providers: [CarsService, ContractsService]
 })
 export class NewContract {
 
@@ -37,8 +37,8 @@ export class NewContract {
       firstName: this.customerData.firstName,
       lastName: this.customerData.lastName
     }
-    console.log(this.contractsService.save(contract).subscribe(res => location.reload()));
-    console.log(contract);
+    contract.carsVins = this.cars.value;
+    this.contractsService.save(contract).subscribe(res => location.reload());
   }
 
   formatDate(value) {

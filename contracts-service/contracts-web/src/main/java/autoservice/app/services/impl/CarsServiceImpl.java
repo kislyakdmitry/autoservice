@@ -47,6 +47,16 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
+    public void save(Car car) {
+        carsRepo.save(car);
+    }
+
+    @Override
+    public Car getCarByVin(String vin) {
+        return carsRepo.findByVin(vin).orElseThrow(() -> new CarNotFoundException("Car " + vin + " not found"));
+    }
+
+    @Override
     public void bookCarById(Long carId) {
         Car car = getCarById(carId);
         car.setAvailable(false);

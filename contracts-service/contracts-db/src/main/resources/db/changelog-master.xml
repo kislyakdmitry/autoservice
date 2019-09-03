@@ -69,9 +69,6 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="car_vin" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
             <column name="contract_id" type="int">
                 <constraints nullable="false"/>
             </column>

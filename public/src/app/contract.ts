@@ -3,4 +3,5 @@ export class Contract {
     startDate: string;
     endDate: string;
     customer: any;
+    carsVins: Array<string>;
 }

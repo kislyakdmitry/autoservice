@@ -13,9 +13,9 @@ public class ContractSaveDto {
 
     private List<String> carsVins;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-d")
     private LocalDate startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-M-d")
     private LocalDate endDate;
 }

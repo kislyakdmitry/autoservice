@@ -4,6 +4,7 @@ import autoservice.app.domain.Contract;
 import autoservice.app.dto.ContractDto;
 import autoservice.app.dto.ContractSaveDto;
 import autoservice.app.services.ContractsService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,12 +32,11 @@ public class ContractsController {
     }
 
     @PostMapping
-    public ResponseEntity<Contract> saveContract(@RequestBody ContractSaveDto contractSaveDto) {
+    public HttpStatus saveContract(@RequestBody ContractSaveDto contractSaveDto) {
         if (Objects.isNull(contractSaveDto)) {
-            return ResponseEntity.badRequest().build();
+            return HttpStatus.BAD_REQUEST;
         }
-        System.out.println(contractSaveDto);
-        //Contract contract = contractsService.save(contractDto);
-        return ResponseEntity.ok(new Contract());
+        Contract contract = contractsService.save(contractSaveDto);
+        return HttpStatus.CREATED;
     }
 }

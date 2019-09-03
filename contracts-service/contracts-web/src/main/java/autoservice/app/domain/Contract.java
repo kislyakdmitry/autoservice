@@ -31,8 +31,9 @@ public class Contract extends GenericEntity<Long> {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ElementCollection
-    @CollectionTable(name="contracts_cars", joinColumns=@JoinColumn(name="contract_id"))
-    @Column(name="car_vin")
-    private List<String> cars;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "contracts_cars",
+            joinColumns = {@JoinColumn(name = "contract_id")},
+            inverseJoinColumns = {@JoinColumn(name = "car_id")})
+    private List<Car> cars;
 }
