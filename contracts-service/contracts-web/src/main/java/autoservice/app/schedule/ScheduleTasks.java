@@ -25,7 +25,7 @@ public class ScheduleTasks {
         this.carsService = carsService;
     }
 
-    @Scheduled(fixedRate = 100000)
+    @Scheduled(cron = "10 * * * * ?")
     public void retrieveAvailableCars() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<Car>> response

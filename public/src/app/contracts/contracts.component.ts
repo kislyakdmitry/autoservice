@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ContractsService } from '../contracts.service';
 import { Contract } from '../contract';
-import { ResourceService } from '../resource.service'
+import { ResourceService } from '../resource.service';
 
 @Component({
   selector: 'contracts',
@@ -15,7 +15,7 @@ export class ContractsComponent {
 
     constructor(private contractsService: ContractsService, private resourceService: ResourceService){}
 
-    ngOnInit(){
+    OnInit() {
         this.resourceService.checkCredentials();
         this.contractsService.getData().subscribe((data: Contract[]) => {
             this.contracts = data;

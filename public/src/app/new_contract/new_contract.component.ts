@@ -16,33 +16,33 @@ export class NewContract {
   public customerData = {
     firstName: '',
     lastName: ''
-  }
+  };
   private startDate = new FormControl();
   private endDate = new FormControl();
 
   cars = new FormControl();
   carsList: Car[];
 
-  ngOnInit(): void {
+  OnInit(): void {
     this.carsService.getData().subscribe((data: Car[]) => {
       this.carsList = data;
     });
   }
 
   submit() {
-    let contract = new Contract();
+    const contract = new Contract();
     contract.startDate = this.formatDate(this.startDate.value);
     contract.endDate = this.formatDate(this.endDate.value);
     contract.customer = {
       firstName: this.customerData.firstName,
       lastName: this.customerData.lastName
-    }
+    };
     contract.carsVins = this.cars.value;
     this.contractsService.save(contract).subscribe(res => location.reload());
   }
 
   formatDate(value) {
-    let formatedDate = new Date(value);
+    const formatedDate = new Date(value);
     return formatedDate.getFullYear() + '-' + (formatedDate.getMonth() + 1) + '-' + formatedDate.getDate();
   }
 }
