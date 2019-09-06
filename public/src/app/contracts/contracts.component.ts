@@ -15,7 +15,7 @@ export class ContractsComponent {
 
     constructor(private contractsService: ContractsService, private resourceService: ResourceService){}
 
-    OnInit() {
+    ngOnInit() {
         this.resourceService.checkCredentials();
         this.contractsService.getData().subscribe((data: Contract[]) => {
             this.contracts = data;

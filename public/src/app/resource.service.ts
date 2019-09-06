@@ -14,7 +14,7 @@ export class ResourceService {
         const options = {
             headers: new HttpHeaders(
                 {
-                    Authorization: 'Basic ' + btoa('autoservice-client:autoservice-secret'),
+                    'Authorization': 'Basic ' + btoa('autoservice-client:autoservice-secret'),
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             ),

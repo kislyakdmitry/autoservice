@@ -2,6 +2,7 @@ package autoservice.app.controllers;
 
 import autoservice.app.domain.Car;
 import autoservice.app.services.CarsService;
+import autoservice.app.services.impl.ScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,11 @@ import java.util.List;
 @RequestMapping("api/cars")
 public class CarsController {
     private CarsService carsService;
+    private ScheduleService scheduleService;
 
-    public CarsController(CarsService carsService) {
+    public CarsController(CarsService carsService, ScheduleService scheduleService) {
         this.carsService = carsService;
+        this.scheduleService = scheduleService;
     }
 
     @GetMapping("/{carId}")
@@ -31,5 +34,10 @@ public class CarsController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void bookCar(@PathVariable Long carId) {
         carsService.bookCarById(carId);
+    }
+
+    @PostMapping("schedule")
+    public void setCarsUpdateSchedule() {
+        scheduleService.setCarUpdatePeriod();
     }
 }

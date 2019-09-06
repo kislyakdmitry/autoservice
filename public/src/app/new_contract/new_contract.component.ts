@@ -23,7 +23,7 @@ export class NewContract {
   cars = new FormControl();
   carsList: Car[];
 
-  OnInit(): void {
+  ngOnInit(): void {
     this.carsService.getData().subscribe((data: Car[]) => {
       this.carsList = data;
     });
