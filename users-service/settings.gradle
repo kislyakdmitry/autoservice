@@ -1,4 +1,0 @@
-rootProject.name = 'autoservice-app'
-
-include 'application-db'
-include 'application-web'

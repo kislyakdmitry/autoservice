@@ -3,6 +3,7 @@ package autoservice.app.services.impl;
 import autoservice.app.domain.Car;
 import autoservice.app.services.CarsService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class ScheduleService {
 
     private ScheduledFuture scheduledFuture;
 
+    @Value("${cars-service.url}")
+    private String CARS_API_URL;
+
     public ScheduleService(TaskScheduler taskScheduler, CarsService carsService) {
         this.taskScheduler = taskScheduler;
         this.carsService = carsService;
@@ -31,18 +35,16 @@ public class ScheduleService {
     public void setCarUpdatePeriod() {
         if (Objects.nonNull(scheduledFuture)) {
             scheduledFuture.cancel(true);
-            log.info(scheduledFuture.toString() + " canceled");
         }
         scheduledFuture = taskScheduler.scheduleAtFixedRate(() -> {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<List<Car>> response
-                    = restTemplate.exchange("http://localhost:8081/api/cars", HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {
+                    = restTemplate.exchange(CARS_API_URL + "cars", HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {
             });
             List<Car> cars = response.getBody();
             log.info("Retrieved " + response.getBody().size() + " cars");
             carsService.updateCarList(cars);
         },
                 10000);
-        log.info(scheduledFuture.toString() + " started");
     }
 }
