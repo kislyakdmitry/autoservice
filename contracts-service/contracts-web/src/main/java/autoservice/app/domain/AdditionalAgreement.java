@@ -23,6 +23,6 @@ public class AdditionalAgreement extends GenericEntity<Long> {
     @JoinColumn(name = "contract_id")
     private Contract contract;
 
-    @Column(name = "car_vin")
-    private String car;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Car car;
 }

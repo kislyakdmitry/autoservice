@@ -59,7 +59,7 @@
             <column name="contract_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="car_vin" type="varchar(255)">
+            <column name="car_id" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
@@ -116,6 +116,11 @@
                                  constraintName="fk_additionalAgreement_contract"
                                  referencedColumnNames="id"
                                  referencedTableName="contracts"/>
+        <addForeignKeyConstraint baseColumnNames="car_id"
+                                 baseTableName="additional_agreements"
+                                 constraintName="fk_additionalAgreement_car"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cars"/>
         <addForeignKeyConstraint baseColumnNames="contract_id"
                                  baseTableName="contracts_cars"
                                  constraintName="fk_contractsCars_contract"

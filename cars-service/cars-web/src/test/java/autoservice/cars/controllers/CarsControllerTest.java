@@ -69,10 +69,4 @@ public class CarsControllerTest {
         this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
-
-    @Test
-    public void testBookCar_NotFound() throws Exception {
-        this.mockMvc.perform(put(API_URI + "/" + TEST_CAR_ID + "/book").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent());
-    }
 }

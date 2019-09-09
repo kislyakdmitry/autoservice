@@ -4,7 +4,6 @@ import autoservice.app.domain.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class TestEntityFactory {
@@ -38,7 +37,7 @@ public class TestEntityFactory {
                                        LocalDate endTime,
                                        Customer customer,
                                        Employee employee,
-                                       List<String> cars) {
+                                       List<Car> cars) {
         Contract contract = new Contract();
         contract.setStartTime(startTime);
         contract.setEndTime(endTime);
@@ -48,7 +47,7 @@ public class TestEntityFactory {
         return contract;
     }
 
-    public static AdditionalAgreement getAdditionalAgreement(Contract contract, String car) {
+    public static AdditionalAgreement getAdditionalAgreement(Contract contract, Car car) {
         AdditionalAgreement agreement = new AdditionalAgreement();
         agreement.setContract(contract);
         agreement.setCar(car);
