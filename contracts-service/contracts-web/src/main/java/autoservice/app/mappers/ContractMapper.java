@@ -56,15 +56,6 @@ public class ContractMapper {
             employee.setId(contractDto.getEmployeeId());
             contract.setEmployee(employee);
         }
-/*       if (Objects.nonNull(contractDto.getCarIds())) {
-           List<Car> cars = new ArrayList<>();
-           for (Long carId : contractDto.getCarIds()) {
-               Car car = new Car();
-               car.setId(carId);
-               cars.add(car);
-           }
-           contract.setCars(cars);
-       }*/
         if (Objects.nonNull(contractDto.getStartDate())) {
             contract.setStartTime(contractDto.getStartDate());
         }

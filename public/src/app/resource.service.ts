@@ -32,7 +32,6 @@ export class ResourceService {
 
     save(resourceUrl, object): Observable<any> {
         this.checkCredentials();
-        console.log(object);
         return this.http.post(resourceUrl + '?access_token=' + Cookie.get('access_token'), object);
     }
 
@@ -45,7 +44,13 @@ export class ResourceService {
     checkCredentials() {
         if (!Cookie.check('access_token')) {
             this.router.navigate(['/login']);
+        } else {
+            this.http.get('http://localhost:8080/oauth/check_token?token=' + Cookie.get('access_token'))
+        .subscribe(res=>res,err=> {
+            this.logout()
+        })
         }
+        
     }
 
     logout() {

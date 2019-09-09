@@ -16,7 +16,6 @@ export class ContractsService {
     }
 
     save(contract: Contract) {
-        console.log(contract);
         return this.resourceService.save(this.contractsUrl, contract);
     }
 }

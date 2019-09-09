@@ -35,7 +35,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public Employee getCurrentUser(){
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(principal.getName());
         return employeeRepo.findByUsername(principal.getName()).orElseThrow(EntityNotFoundException::new);
     }
 

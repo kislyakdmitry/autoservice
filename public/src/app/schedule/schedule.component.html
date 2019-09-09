@@ -1,0 +1,22 @@
+<button mat-raised-button [routerLink]="['/']">Back</button>
+<div style="padding-left: 15px" *ngIf="currentSchedule.days.length>0">
+    <br>
+    <div style="padding-bottom: 5px">Current schedule:</div>
+    Days: {{currentSchedule.days.join(', ')}} <br>
+    Time: {{currentSchedule.time}} <br>
+</div>
+<div style="padding: 20px">
+    <h1>Set car list update schedule</h1>
+    <div>
+        <mat-form-field style="width: 600px">
+            <mat-label>Days</mat-label>
+            <mat-select [formControl]="pickedDays" multiple>
+                <mat-option *ngFor="let day of days" [value]="day.id"> {{day.name}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-form-field style="width: 600px">
+        <input [(ngModel)]="time" type="time" matInput placeholder="Update time" required >
+    </mat-form-field>
+</div>
+<button (click)="submit()" mat-raised-button>Submit</button>
