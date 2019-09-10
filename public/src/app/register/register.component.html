@@ -1,0 +1,12 @@
+<div class="example-container">
+    <h1>Login</h1>
+    <mat-form-field>
+      <input [(ngModel)]="loginData.username" matInput placeholder="Login" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input type="password" [(ngModel)]="loginData.password" matInput placeholder="Password" required>
+    </mat-form-field>
+    <button (click)="login()" mat-raised-button>Log in</button>
+  </div>
+<router-outlet></router-outlet>

@@ -6,10 +6,9 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(scanBasePackages = "autoservice")
-@EnableScheduling
 @EnableJms
-public class AutoServiceApplication {
+public class EmployeesServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AutoServiceApplication.class, args);
+        SpringApplication.run(EmployeesServiceApplication.class, args);
     }
 }
