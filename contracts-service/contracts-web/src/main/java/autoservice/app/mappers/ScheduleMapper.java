@@ -26,7 +26,7 @@ public class ScheduleMapper {
         //month
         cron.append("*").append(StringUtils.SPACE);
         //day of week
-        if (Objects.nonNull(dto.getDays())) {
+        if (Objects.nonNull(dto.getDays()) && !dto.getDays().isEmpty()) {
             dto.getDays().forEach(day -> cron.append(day).append(','));
             cron.delete(cron.length() - 1, cron.length());
         } else {
