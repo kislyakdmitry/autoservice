@@ -9,10 +9,14 @@ export class ContractsService {
     constructor(private http: HttpClient, private resourceService: ResourceService) {
     }
 
-    private contractsUrl = 'http://localhost:8080/api/contracts';
+    private contractsUrl = 'http://localhost:8080/api/contracts/';
 
     getData(): Observable<Contract[]> {
         return this.resourceService.getResource(this.contractsUrl);
+    }
+
+    getContract(id: number): Observable<Contract> {
+        return this.resourceService.getResource(this.contractsUrl + id);
     }
 
     save(contract: Contract) {

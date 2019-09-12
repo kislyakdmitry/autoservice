@@ -23,9 +23,8 @@ public class ContractService {
         this.userDetailsService = userDetailsService;
     }
 
-    public Contract getContractById(Long id) {
-        return contractsRepo.findById(id)
-                .orElseThrow(() -> new ContractNotFoundException("Contract " + id + " not found"));
+    public ContractDto getContractById(Long id) {
+        return contractMapper.toContractDto(contractsRepo.findById(id).orElseThrow(() -> new ContractNotFoundException("Contract " + id + " not found")));
     }
 
     public List<ContractDto> getAllContracts() {

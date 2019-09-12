@@ -1,5 +1,6 @@
 package autoservice.app.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ public abstract class GenericEntity<T> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private T id;
 
+    @JsonIgnore
     private LocalDateTime created;
+    @JsonIgnore
     private LocalDateTime updated;
 }

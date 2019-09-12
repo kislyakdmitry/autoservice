@@ -48,22 +48,6 @@ public class ContractMapper {
         return contract;
     }
 
-    public Contract toContract(ContractDto contractDto) {
-        Contract contract = new Contract();
-        if (Objects.nonNull(contractDto.getEmployeeId())) {
-            Employee employee = new Employee();
-            employee.setId(contractDto.getEmployeeId());
-            contract.setEmployee(employee);
-        }
-        if (Objects.nonNull(contractDto.getStartDate())) {
-            contract.setStartTime(contractDto.getStartDate());
-        }
-        if (Objects.nonNull(contractDto.getEndDate())) {
-            contract.setEndTime(contractDto.getEndDate());
-        }
-        return contract;
-    }
-
     public ContractDto toContractDto(Contract contract) {
         ContractDto contractDto = new ContractDto();
         contractDto.setId(contract.getId());

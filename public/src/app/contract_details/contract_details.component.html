@@ -1,0 +1,12 @@
+<div style="margin: 25px">
+    <h2>Contract # {{contract.id}}</h2>
+    <h3 style="margin-top: 25px">Customer:</h3>
+    {{contract.customer.firstName}} {{contract.customer.lastName}}
+    <br>
+    <div><h3>Start date: </h3> {{contract.startDate}}</div>
+    <div><h3>End date: </h3> {{contract.endDate}}</div>
+    <h3>Cars:</h3>
+    <div *ngFor="let car of contract.carVins">
+        {{car}}
+    </div>
+</div>

@@ -34,6 +34,7 @@ export class NewContract {
     contract.startDate = this.formatDate(this.startDate.value);
     contract.endDate = this.formatDate(this.endDate.value);
     contract.customer = {
+      id: null,
       firstName: this.customerData.firstName,
       lastName: this.customerData.lastName
     };

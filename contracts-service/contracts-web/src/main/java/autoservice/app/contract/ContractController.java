@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("api/contracts")
 public class ContractController {
     private ContractService contractsService;
@@ -25,7 +24,7 @@ public class ContractController {
     }
 
     @GetMapping("/{contractId}")
-    public ResponseEntity<Contract> getContractById(@PathVariable Long contractId) {
+    public ResponseEntity<ContractDto> getContractById(@PathVariable Long contractId) {
         return ResponseEntity.ok(contractsService.getContractById(contractId));
     }
 
