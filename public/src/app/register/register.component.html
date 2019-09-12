@@ -1,12 +1,18 @@
 <div class="example-container">
-    <h1>Login</h1>
+    <h1>Register</h1>
     <mat-form-field>
-      <input [(ngModel)]="loginData.username" matInput placeholder="Login" required>
+      <input [(ngModel)]="registerData.username" matInput placeholder="Username" required>
     </mat-form-field>
   
     <mat-form-field>
-      <input type="password" [(ngModel)]="loginData.password" matInput placeholder="Password" required>
+      <input type="password" [(ngModel)]="registerData.password" matInput placeholder="Password" required>
     </mat-form-field>
-    <button (click)="login()" mat-raised-button>Log in</button>
+    <mat-form-field>
+      <input [(ngModel)]="registerData.firstName" matInput placeholder="First name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input [(ngModel)]="registerData.lastName" matInput placeholder="Last name" required>
+    </mat-form-field>
+    <button (click)="register()" mat-raised-button>Register</button>
   </div>
 <router-outlet></router-outlet>

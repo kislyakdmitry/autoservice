@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import { ResourceService } from '../resource.service';
+import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [ ResourceService ]
+  selector: 'register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
+  providers: [ HttpClient ]
 })
-export class LoginComponent {
-  constructor(private resourceService: ResourceService){}
-  public loginData = {
+export class RegisterComponent {
+  constructor(private http: HttpClient, private router: Router){}
+  public registerData = {
     username: '',
-    password: ''
+    password: '',
+    firstName: '',
+    lastName: ''
   };
 
-  login() {
-    this.resourceService.obtainAccessToken(this.loginData);
+  register() {
+    this.http.post('http://localhost:8080/api/register', this.registerData).subscribe(res => this.router.navigate(['/']));
 }
 }

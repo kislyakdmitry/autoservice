@@ -18,6 +18,7 @@ import {ResourceService} from './resource.service';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 import {NewContract} from './new_contract/new_contract.component';
 import {ScheduleComponent} from './schedule/schedule.component';
 
@@ -26,6 +27,7 @@ import {ScheduleComponent} from './schedule/schedule.component';
         AppComponent,
         ContractsComponent,
         LoginComponent,
+        RegisterComponent,
         NewContract,
         ScheduleComponent
     ],
