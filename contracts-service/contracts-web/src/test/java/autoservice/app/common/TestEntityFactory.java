@@ -13,12 +13,12 @@ import java.util.List;
 public class TestEntityFactory {
 
     public static Car getCar(String name, BigDecimal price, String vin, Boolean available) {
-        Car car = new Car();
-        car.setName(name);
-        car.setPrice(price);
-        car.setVin(vin);
-        car.setAvailable(available);
-        return car;
+        return Car.builder()
+                .name(name)
+                .available(available)
+                .vin(vin)
+                .price(price)
+                .build();
     }
 
     public static Customer getCustomer(String firstName, String lastName) {
@@ -29,12 +29,12 @@ public class TestEntityFactory {
     }
 
     public static Employee getEmployee(String username, String password, String firstName, String lastName) {
-        Employee employee = new Employee();
-        employee.setUsername(username);
-        employee.setPassword(password);
-        employee.setFirstName(firstName);
-        employee.setLastName(lastName);
-        return employee;
+        return Employee.builder()
+                .username(username)
+                .password(password)
+                .firstName(firstName)
+                .lastName(lastName)
+                .build();
     }
 
     public static Contract getContract(LocalDate startTime,
@@ -42,13 +42,13 @@ public class TestEntityFactory {
                                        Customer customer,
                                        Employee employee,
                                        List<Car> cars) {
-        Contract contract = new Contract();
-        contract.setStartTime(startTime);
-        contract.setEndTime(endTime);
-        contract.setCustomer(customer);
-        contract.setEmployee(employee);
-        contract.setCars(cars);
-        return contract;
+        return Contract.builder()
+                .cars(cars)
+                .customer(customer)
+                .employee(employee)
+                .startTime(startTime)
+                .endTime(endTime)
+                .build();
     }
 
     public static AdditionalAgreement getAdditionalAgreement(Contract contract, Car car) {

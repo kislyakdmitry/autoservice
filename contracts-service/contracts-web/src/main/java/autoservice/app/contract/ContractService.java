@@ -5,23 +5,19 @@ import autoservice.app.contract.dto.ContractSaveDto;
 import autoservice.app.contract.exceptions.ContractNotFoundException;
 import autoservice.app.employee.Employee;
 import autoservice.app.employee.EmployeeService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ContractService {
 
     private ContractRepo contractsRepo;
     private ContractMapper contractMapper;
     private EmployeeService userDetailsService;
-
-    public ContractService(ContractRepo contractsRepo, ContractMapper contractMapper, EmployeeService userDetailsService) {
-        this.contractsRepo = contractsRepo;
-        this.contractMapper = contractMapper;
-        this.userDetailsService = userDetailsService;
-    }
 
     public ContractDto getContractById(Long id) {
         return contractMapper.toContractDto(contractsRepo.findById(id).orElseThrow(() -> new ContractNotFoundException("Contract " + id + " not found")));

@@ -2,61 +2,55 @@ package autoservice.app.contract;
 
 import autoservice.app.car.Car;
 import autoservice.app.car.CarService;
-import autoservice.app.customer.CustomerService;
-import autoservice.app.employee.Employee;
 import autoservice.app.contract.dto.ContractDto;
 import autoservice.app.contract.dto.ContractSaveDto;
+import autoservice.app.customer.CustomerService;
+import autoservice.app.employee.Employee;
 import autoservice.app.employee.EmployeeService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
+@AllArgsConstructor
 public class ContractMapper {
 
-    private CarService carService;
-    private CustomerService customerService;
-    private EmployeeService userDetailsService;
-
-    public ContractMapper(CarService carService, CustomerService customerService, EmployeeService userDetailsService) {
-        this.carService = carService;
-        this.customerService = customerService;
-        this.userDetailsService = userDetailsService;
-    }
+    private final CarService carService;
+    private final CustomerService customerService;
+    private final EmployeeService userDetailsService;
 
     public Contract toContract(ContractSaveDto contractSaveDto) {
-        Contract contract = new Contract();
         List<Car> cars = new ArrayList<>();
         contractSaveDto.getCarsVins().stream().map(carService::getCarByVin).forEach(cars::add);
-        contract.setCars(cars);
-
         for (Car car : cars) {
             car.setAvailable(false);
             carService.save(car);
         }
+        Employee employee = Employee.builder()
+                .id(userDetailsService.getCurrentUser().getId())
+                .build();
 
-        contract.setCustomer(customerService.save(contractSaveDto.getCustomer()));
-
-        Employee employee = new Employee();
-        employee.setId(userDetailsService.getCurrentUser().getId());
-        contract.setEmployee(employee);
-
-        contract.setStartTime(contractSaveDto.getStartDate());
-        contract.setEndTime(contractSaveDto.getEndDate());
-        return contract;
+        return Contract.builder()
+                .cars(cars)
+                .employee(employee)
+                .customer(customerService.save(contractSaveDto.getCustomer()))
+                .startTime(contractSaveDto.getStartDate())
+                .endTime(contractSaveDto.getEndDate())
+                .build();
     }
 
     public ContractDto toContractDto(Contract contract) {
-        ContractDto contractDto = new ContractDto();
-        contractDto.setId(contract.getId());
-        contractDto.setStartDate(contract.getStartTime());
-        contractDto.setEndDate(contract.getEndTime());
-        contractDto.setCustomer(contract.getCustomer());
         List<String> vins = new ArrayList<>();
         contract.getCars().forEach(car -> vins.add(car.getVin()));
-        contractDto.setCarVins(vins);
-        return contractDto;
+
+        return ContractDto.builder()
+                .carVins(vins)
+                .customer(contract.getCustomer())
+                .id(contract.getId())
+                .startDate(contract.getStartTime())
+                .endDate(contract.getEndTime())
+                .build();
     }
 }

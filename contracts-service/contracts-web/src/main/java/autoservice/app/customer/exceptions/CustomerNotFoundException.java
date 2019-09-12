@@ -1,4 +1,4 @@
-package autoservice.app.customer;
+package autoservice.app.customer.exceptions;
 
 public class CustomerNotFoundException extends RuntimeException {
     public CustomerNotFoundException() {

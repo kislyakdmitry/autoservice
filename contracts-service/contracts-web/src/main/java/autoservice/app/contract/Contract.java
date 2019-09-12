@@ -4,8 +4,7 @@ import autoservice.app.car.Car;
 import autoservice.app.common.GenericEntity;
 import autoservice.app.customer.Customer;
 import autoservice.app.employee.Employee;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,8 +12,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "contracts")
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Contract extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(name = "contracts_id_seq", sequenceName = "contracts_id_seq", allocationSize = 1)

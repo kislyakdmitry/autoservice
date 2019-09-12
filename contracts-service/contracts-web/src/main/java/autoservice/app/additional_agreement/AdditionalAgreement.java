@@ -3,8 +3,8 @@ package autoservice.app.additional_agreement;
 import autoservice.app.car.Car;
 import autoservice.app.common.GenericEntity;
 import autoservice.app.contract.Contract;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Table(name = "additional_agreements")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdditionalAgreement extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(
@@ -21,6 +24,7 @@ public class AdditionalAgreement extends GenericEntity<Long> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "additional_agreements_id_seq")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "contract_id")
     private Contract contract;

@@ -1,11 +1,9 @@
 package autoservice.app.common;
 
-import autoservice.app.additional_agreement.exceptions.AdditionalAgreementBadRequest;
-import autoservice.app.additional_agreement.exceptions.AdditionalAgreementNotFound;
 import autoservice.app.car.exceptions.CarNotFoundException;
 import autoservice.app.contract.exceptions.ContractBadRequest;
 import autoservice.app.contract.exceptions.ContractNotFoundException;
-import autoservice.app.customer.CustomerNotFoundException;
+import autoservice.app.customer.exceptions.CustomerNotFoundException;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +23,7 @@ public class Handler {
     @ExceptionHandler(value = {
             ContractNotFoundException.class,
             CustomerNotFoundException.class,
-            CarNotFoundException.class,
-            AdditionalAgreementNotFound.class
+            CarNotFoundException.class
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleEntityNotFoundException(Exception ex) {
@@ -34,7 +31,6 @@ public class Handler {
     }
 
     @ExceptionHandler(value = {
-            AdditionalAgreementBadRequest.class,
             ContractBadRequest.class
     })
     public ResponseEntity<Map<String, String>> handleBadRequestException(Exception ex) {

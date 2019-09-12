@@ -24,7 +24,7 @@ public class ContractsRepoTest extends GenericCrudRepoTest<ContractRepo, Contrac
     private CustomerRepo customersRepo;
 
     @Autowired
-    private ContractRepo contractsRepo;
+    private ContractRepo contractRepo;
 
     @Autowired
     private CarRepo carsRepo;

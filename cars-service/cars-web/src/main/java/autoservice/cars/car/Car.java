@@ -1,8 +1,7 @@
 package autoservice.cars.car;
 
 import autoservice.cars.common.GenericEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +11,9 @@ import java.math.BigDecimal;
 @Table(name = "cars")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Car extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(name = "cars_id_seq", sequenceName = "cars_id_seq", allocationSize = 1)

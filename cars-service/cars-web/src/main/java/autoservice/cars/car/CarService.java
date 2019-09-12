@@ -1,19 +1,17 @@
 package autoservice.cars.car;
 
 import autoservice.cars.car.exceptions.CarNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CarService {
 
     private CarRepo carsRepo;
-
-    public CarService(CarRepo carsRepo) {
-        this.carsRepo = carsRepo;
-    }
 
     public List<Car> getAllCars() {
         List<Car> cars = (List<Car>) carsRepo.findAll();

@@ -1,5 +1,6 @@
 package autoservice.app.employee;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,13 +17,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Service(value = "userService")
+@AllArgsConstructor
 public class EmployeeService implements UserDetailsService {
 
     private EmployeeRepo employeeRepo;
-
-    public EmployeeService(EmployeeRepo employeeRepo) {
-        this.employeeRepo = employeeRepo;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,6 +1,7 @@
 package autoservice.app.car;
 
 import autoservice.app.car.exceptions.CarNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -11,13 +12,10 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class CarService {
 
     private CarRepo carsRepo;
-
-    public CarService(CarRepo carsRepo) {
-        this.carsRepo = carsRepo;
-    }
 
     public List<Car> getAllCars() {
         List<Car> cars = (List<Car>) carsRepo.findAll();

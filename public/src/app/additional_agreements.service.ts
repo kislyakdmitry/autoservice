@@ -5,13 +5,21 @@ import {Observable} from 'rxjs';
 import {ResourceService} from './resource.service';
 
 @Injectable()
-export class ContractsService {
+export class AdditionalAgreementsService {
     constructor(private http: HttpClient, private resourceService: ResourceService) {
     }
 
-    private contractsUrl = 'http://localhost:8080/api/contracts';
+    private contractsUrl = 'http://localhost:8080/api/contracts/';
 
     getData(): Observable<Contract[]> {
         return this.resourceService.getResource(this.contractsUrl);
+    }
+
+    getContract(id: number): Observable<Contract> {
+        return this.resourceService.getResource(this.contractsUrl + id);
+    }
+
+    save(contract: Contract) {
+        return this.resourceService.save(this.contractsUrl, contract);
     }
 }

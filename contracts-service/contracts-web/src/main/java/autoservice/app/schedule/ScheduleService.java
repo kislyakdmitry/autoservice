@@ -2,6 +2,8 @@ package autoservice.app.schedule;
 
 import autoservice.app.car.Car;
 import autoservice.app.car.CarService;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -29,7 +31,6 @@ public class ScheduleService {
 
     @Value("${cars-service.url}")
     private String CARS_API_URL;
-
 
     public ScheduleService(TaskScheduler taskScheduler, CarService carService, ScheduleMapper scheduleMapper) {
         this.taskScheduler = taskScheduler;

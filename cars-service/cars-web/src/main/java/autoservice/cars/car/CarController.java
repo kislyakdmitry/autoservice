@@ -1,5 +1,6 @@
 package autoservice.cars.car;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/cars")
+@AllArgsConstructor
 public class CarController {
-    private CarService carService;
 
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
+    private CarService carService;
 
     @GetMapping("/{carId}")
     public ResponseEntity<Car> getCarById(@PathVariable Long carId) {

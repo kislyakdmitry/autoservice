@@ -3,16 +3,18 @@ package autoservice.app.employee;
 import autoservice.app.common.GenericEntity;
 import autoservice.app.contract.Contract;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "employees")
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee extends GenericEntity<Long> {
     @Id
     @SequenceGenerator(name = "employees_id_seq", sequenceName = "employees_id_seq", allocationSize = 1)

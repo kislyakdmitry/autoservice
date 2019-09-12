@@ -1,32 +1,32 @@
 package autoservice.app.additional_agreement;
 
-import autoservice.app.additional_agreement.dto.AdditionalAgreementDto;
-import autoservice.app.additional_agreement.exceptions.AdditionalAgreementNotFound;
+import autoservice.app.car.Car;
+import autoservice.app.car.CarService;
+import autoservice.app.contract.Contract;
+import autoservice.app.contract.ContractRepo;
+import autoservice.app.contract.ContractService;
+import autoservice.app.contract.dto.ContractDto;
+import autoservice.app.contract.exceptions.ContractNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class AdditionalAgreementService {
 
     private AdditionalAgreementRepo agreementRepo;
-    private AdditionalAgreementMapper agreementMapper;
+    private ContractRepo contractRepo;
+    private CarService carService;
 
-    public AdditionalAgreementService(AdditionalAgreementRepo agreementRepo, AdditionalAgreementMapper agreementMapper) {
-        this.agreementRepo = agreementRepo;
-        this.agreementMapper = agreementMapper;
+    public List<AdditionalAgreement> getAllAdditionalAgreements(Long id) {
+        return agreementRepo.findAdditionalAgreementsByContract_Id(id);
     }
 
-    public AdditionalAgreement getAdditionalAgreementById(Long id) {
-        return agreementRepo.findById(id)
-                .orElseThrow(() -> new AdditionalAgreementNotFound("Additional agreement " + id + " not found"));
-    }
-
-    public List<AdditionalAgreement> getAllAdditionalAgreements() {
-        return (List<AdditionalAgreement>) agreementRepo.findAll();
-    }
-
-    public AdditionalAgreement save(AdditionalAgreementDto dto) {
-        return agreementRepo.save(agreementMapper.toAdditionalAgreement(dto));
+    public void save(String carVin, Long contractId) {
+        Contract contract = contractRepo.findById(contractId).orElseThrow(() -> new ContractNotFoundException("Contract " + contractId + " not found"));
+        Car car = carService.getCarByVin(carVin);
+        agreementRepo.save(AdditionalAgreement.builder().car(car).contract(contract).build());
     }
 }

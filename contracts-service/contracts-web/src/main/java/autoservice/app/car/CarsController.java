@@ -2,6 +2,7 @@ package autoservice.app.car;
 
 import autoservice.app.schedule.ScheduleDto;
 import autoservice.app.schedule.ScheduleService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("api/cars")
 @Slf4j
+@AllArgsConstructor
 public class CarsController {
+
     private CarService carsService;
     private ScheduleService scheduleService;
-
-    public CarsController(CarService carsService, ScheduleService scheduleService) {
-        this.carsService = carsService;
-        this.scheduleService = scheduleService;
-    }
 
     @GetMapping("/{carId}")
     public ResponseEntity<Car> getCarById(@PathVariable Long carId) {

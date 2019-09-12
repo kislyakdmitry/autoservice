@@ -2,6 +2,7 @@ package autoservice.app.contract;
 
 import autoservice.app.contract.dto.ContractDto;
 import autoservice.app.contract.dto.ContractSaveDto;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,10 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("api/contracts")
+@AllArgsConstructor
 public class ContractController {
-    private ContractService contractsService;
 
-    public ContractController(ContractService contractsService) {
-        this.contractsService = contractsService;
-    }
+    private ContractService contractsService;
 
     @GetMapping
     public ResponseEntity<List<ContractDto>> getAllContracts() {
@@ -33,7 +32,7 @@ public class ContractController {
         if (Objects.isNull(contractSaveDto)) {
             return HttpStatus.BAD_REQUEST;
         }
-        Contract contract = contractsService.save(contractSaveDto);
+        contractsService.save(contractSaveDto);
         return HttpStatus.CREATED;
     }
 }
