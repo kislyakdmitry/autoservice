@@ -1,6 +1,6 @@
 package autoservice.app.jms;
 
-import autoservice.app.dto.EmployeeDto;
+import autoservice.app.employee.EmployeeDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
