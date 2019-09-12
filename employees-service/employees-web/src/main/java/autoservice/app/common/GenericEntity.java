@@ -1,4 +1,4 @@
-package autoservice.app.domain;
+package autoservice.app.common;
 
 import lombok.Data;
 

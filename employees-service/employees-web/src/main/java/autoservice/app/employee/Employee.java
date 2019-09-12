@@ -1,5 +1,6 @@
-package autoservice.app.domain;
+package autoservice.app.employee;
 
+import autoservice.app.common.GenericEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

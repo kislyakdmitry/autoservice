@@ -1,8 +1,5 @@
-package autoservice.app.services.impl;
+package autoservice.app.employee;
 
-import autoservice.app.domain.Employee;
-import autoservice.app.repositories.EmployeeRepo;
-import autoservice.app.services.EmployeesService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -13,11 +10,11 @@ import javax.jms.TextMessage;
 import java.io.IOException;
 
 @Service(value = "userService")
-public class EmployeesServiceImpl implements EmployeesService {
+public class EmployeeService {
 
     private EmployeeRepo employeeRepo;
 
-    public EmployeesServiceImpl(EmployeeRepo employeeRepo) {
+    public EmployeeService(EmployeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
 
