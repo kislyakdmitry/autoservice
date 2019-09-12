@@ -1,12 +1,11 @@
-package autoservice.cars.repositories;
+package autoservice.cars.car;
 
-import autoservice.cars.TestEntityFactory;
-import autoservice.cars.domain.Car;
-import autoservice.cars.repositories.generic.GenericCrudRepoTest;
+import autoservice.cars.common.TestEntityFactory;
+import autoservice.cars.common.GenericCrudRepoTest;
 
 import java.math.BigDecimal;
 
-public class CarsRepoTest extends GenericCrudRepoTest<CarsRepo, Car, Long> {
+public class CarRepoTest extends GenericCrudRepoTest<CarRepo, Car, Long> {
 
     private static final String TEST_CAR_NAME = "UAZ";
     private static final BigDecimal TEST_CAR_PRICE = BigDecimal.valueOf(1000);

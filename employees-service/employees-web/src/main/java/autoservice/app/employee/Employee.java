@@ -1,16 +1,13 @@
 package autoservice.app.employee;
 
-import autoservice.app.common.GenericEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Employee extends GenericEntity<Long> {
+public class Employee {
     @Id
     @SequenceGenerator(name = "employees_id_seq", sequenceName = "employees_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_id_seq")

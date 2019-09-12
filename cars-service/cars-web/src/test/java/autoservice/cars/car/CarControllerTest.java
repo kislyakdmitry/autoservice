@@ -1,9 +1,7 @@
-package autoservice.cars.controllers;
+package autoservice.cars.car;
 
-import autoservice.cars.TestEntityFactory;
-import autoservice.cars.domain.Car;
-import autoservice.cars.exceptions.CarNotFoundException;
-import autoservice.cars.services.CarsService;
+import autoservice.cars.common.TestEntityFactory;
+import autoservice.cars.car.exceptions.CarNotFoundException;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,13 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CarsController.class)
-public class CarsControllerTest {
+@WebMvcTest(CarController.class)
+public class CarControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CarsService carsService;
+    private CarService carService;
 
     private static final String API_URI = "/api/cars";
 
@@ -45,7 +43,7 @@ public class CarsControllerTest {
 
     @Test
     public void testGetAllCars() throws Exception {
-        when(carsService.getAllCars()).thenReturn(Lists.newArrayList(testCar));
+        when(carService.getAllCars()).thenReturn(Lists.newArrayList(testCar));
         this.mockMvc.perform(get(API_URI).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -54,7 +52,7 @@ public class CarsControllerTest {
 
     @Test
     public void testGetCarById() throws Exception {
-        when(carsService.getCarById(TEST_CAR_ID)).thenReturn(testCar);
+        when(carService.getCarById(TEST_CAR_ID)).thenReturn(testCar);
         this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").exists())
@@ -65,7 +63,7 @@ public class CarsControllerTest {
 
     @Test
     public void testGetCarById_NotFound() throws Exception {
-        when(carsService.getCarById(TEST_CAR_ID)).thenThrow(CarNotFoundException.class);
+        when(carService.getCarById(TEST_CAR_ID)).thenThrow(CarNotFoundException.class);
         this.mockMvc.perform(get(API_URI + "/" + TEST_CAR_ID).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }

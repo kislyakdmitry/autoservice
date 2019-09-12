@@ -1,4 +1,4 @@
-package autoservice.cars.exceptions;
+package autoservice.cars.car.exceptions;
 
 public class CarNotFoundException extends RuntimeException {
     public CarNotFoundException() {

@@ -1,7 +1,5 @@
-package autoservice.cars.controllers;
+package autoservice.cars.car;
 
-import autoservice.cars.domain.Car;
-import autoservice.cars.services.CarsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,20 +10,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/cars")
-public class CarsController {
-    private CarsService carsService;
+public class CarController {
+    private CarService carService;
 
-    public CarsController(CarsService carsService) {
-        this.carsService = carsService;
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
     @GetMapping("/{carId}")
     public ResponseEntity<Car> getCarById(@PathVariable Long carId) {
-        return ResponseEntity.ok(carsService.getCarById(carId));
+        return ResponseEntity.ok(carService.getCarById(carId));
     }
 
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
-        return ResponseEntity.ok(carsService.getAllCars());
+        return ResponseEntity.ok(carService.getAllCars());
     }
 }

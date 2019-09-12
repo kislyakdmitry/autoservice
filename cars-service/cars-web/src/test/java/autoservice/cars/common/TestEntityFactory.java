@@ -1,6 +1,6 @@
-package autoservice.cars;
+package autoservice.cars.common;
 
-import autoservice.cars.domain.Car;
+import autoservice.cars.car.Car;
 
 import java.math.BigDecimal;
 

@@ -1,5 +1,6 @@
-package autoservice.cars.domain;
+package autoservice.cars.car;
 
+import autoservice.cars.common.GenericEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

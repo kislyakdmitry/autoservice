@@ -1,6 +1,6 @@
-package autoservice.cars.repositories.generic;
+package autoservice.cars.common;
 
-import autoservice.cars.domain.GenericEntity;
+import autoservice.cars.common.GenericEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

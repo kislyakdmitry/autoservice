@@ -1,4 +1,4 @@
-package autoservice.cars.domain;
+package autoservice.cars.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
