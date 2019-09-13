@@ -39,7 +39,7 @@ export class NewContract {
       lastName: this.customerData.lastName
     };
     contract.carsVins = this.cars.value;
-    this.contractsService.save(contract).subscribe(res => location.reload());
+    this.contractsService.save(contract).subscribe(res => location.replace('/'));
   }
 
   formatDate(value) {

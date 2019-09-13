@@ -1,5 +1,5 @@
 <div class="example-container">
-    <h1>Login</h1>
+        <h1>Login</h1>
     <mat-form-field>
       <input [(ngModel)]="loginData.username" matInput placeholder="Login" required>
     </mat-form-field>
@@ -8,5 +8,7 @@
       <input type="password" [(ngModel)]="loginData.password" matInput placeholder="Password" required>
     </mat-form-field>
     <button (click)="login()" mat-raised-button>Log in</button>
+    <br>
+    <button mat-raised-button [routerLink]="['/register']">Register</button>
   </div>
 <router-outlet></router-outlet>
