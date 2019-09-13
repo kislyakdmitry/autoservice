@@ -17,7 +17,7 @@ public class AdditionalAgreementsController {
     private final AdditionalAgreementService agreementService;
 
     @GetMapping
-    public ResponseEntity<List<AdditionalAgreement>> getAllAdditionalAgreements(@PathVariable Long contractId) {
+    public ResponseEntity<List<AdditionalAgreementDto>> getAllAdditionalAgreements(@PathVariable Long contractId) {
         return ResponseEntity.ok(agreementService.getAllAdditionalAgreements(contractId));
     }
 

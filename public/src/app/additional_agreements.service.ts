@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Contract} from './contract';
 import {Observable} from 'rxjs';
 import {ResourceService} from './resource.service';
+import { Agreement } from './agreement';
 
 @Injectable()
 export class AdditionalAgreementsService {
@@ -11,15 +11,11 @@ export class AdditionalAgreementsService {
 
     private contractsUrl = 'http://localhost:8080/api/contracts/';
 
-    getData(): Observable<Contract[]> {
-        return this.resourceService.getResource(this.contractsUrl);
+    getData(contractId: number): Observable<Agreement[]> {
+        return this.resourceService.getResource(this.contractsUrl + contractId + '/agreements');
     }
 
-    getContract(id: number): Observable<Contract> {
-        return this.resourceService.getResource(this.contractsUrl + id);
-    }
-
-    save(contract: Contract) {
-        return this.resourceService.save(this.contractsUrl, contract);
+    save(contractId: number, agreement: Agreement) {
+        return this.resourceService.save(this.contractsUrl + contractId + '/agreements', agreement);
     }
 }

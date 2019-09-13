@@ -1,26 +1,28 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CarsService } from '../cars.service';
-import { ContractsService } from '../contracts.service';
+import { AdditionalAgreementsService } from '../additional_agreements.service';
 import { Car } from '../car';
-import { Contract } from '../contract';
+import { Agreement } from '../agreement'
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
-  templateUrl: 'new_contract.component.html',
-  providers: [CarsService, ContractsService]
+  templateUrl: 'additional_agreement.component.html',
+  providers: [CarsService, AdditionalAgreementsService]
 })
-export class NewContract {
+export class AdditionalAgreementComponent {
 
-  constructor(private carsService: CarsService, private contractsService: ContractsService) { }
+  private subscription: Subscription;
+  private contractId: number;
 
-  public customerData = {
-    firstName: '',
-    lastName: ''
-  };
-  private startDate = new FormControl();
-  private endDate = new FormControl();
+  constructor(private carsService: CarsService,
+    private agreementsService: AdditionalAgreementsService,
+    private activateRoute: ActivatedRoute) {
+    this.subscription = activateRoute.params.subscribe(params => this.contractId = params['id']);
+  }
 
-  cars = new FormControl();
+  car = new FormControl();
   carsList: Car[];
 
   ngOnInit(): void {
@@ -30,20 +32,8 @@ export class NewContract {
   }
 
   submit() {
-    const contract = new Contract();
-    contract.startDate = this.formatDate(this.startDate.value);
-    contract.endDate = this.formatDate(this.endDate.value);
-    contract.customer = {
-      id: null,
-      firstName: this.customerData.firstName,
-      lastName: this.customerData.lastName
-    };
-    contract.carsVins = this.cars.value;
-    this.contractsService.save(contract).subscribe(res => location.reload());
-  }
-
-  formatDate(value) {
-    const formatedDate = new Date(value);
-    return formatedDate.getFullYear() + '-' + (formatedDate.getMonth() + 1) + '-' + formatedDate.getDate();
+    const agreement = new Agreement();
+    agreement.carVin = this.car.value;
+    this.agreementsService.save(this.contractId, agreement).subscribe(res => location.reload());
   }
 }

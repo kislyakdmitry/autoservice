@@ -1,5 +1,6 @@
+<div style="margin: 25px">
 <button mat-raised-button [routerLink]="['/']">Back</button>
-<div style="padding-left: 15px" *ngIf="currentSchedule.days.length>0">
+<div *ngIf="currentSchedule.days.length>0">
     <br>
     <div style="padding-bottom: 5px">Current schedule:</div>
     Days: {{currentSchedule.days.join(', ')}} <br>
@@ -20,3 +21,4 @@
     </mat-form-field>
 </div>
 <button (click)="submit()" mat-raised-button>Submit</button>
+</div>

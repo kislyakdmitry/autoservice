@@ -1,12 +1,25 @@
 <div style="margin: 25px">
+    <button mat-raised-button [routerLink]="['/']">Back</button>
     <h2>Contract # {{contract.id}}</h2>
     <h3 style="margin-top: 25px">Customer:</h3>
     {{contract.customer.firstName}} {{contract.customer.lastName}}
     <br>
-    <div><h3>Start date: </h3> {{contract.startDate}}</div>
-    <div><h3>End date: </h3> {{contract.endDate}}</div>
+    <div>
+        <h3>Start date: </h3> {{contract.startDate}}
+    </div>
+    <div>
+        <h3>End date: </h3> {{contract.endDate}}
+    </div>
     <h3>Cars:</h3>
     <div *ngFor="let car of contract.carVins">
         {{car}}
     </div>
+    <div *ngIf="agreements.length>0">
+        <h3>Additional:</h3>
+        <div *ngFor="let additional of agreements">
+            {{additional.carVin}}
+        </div>
+    </div>
+    <br>
+    <button mat-raised-button [routerLink]="['agreements']">Add additional aggreement</button>
 </div>

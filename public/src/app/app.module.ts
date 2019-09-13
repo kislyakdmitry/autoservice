@@ -22,6 +22,7 @@ import {RegisterComponent} from './register/register.component';
 import {NewContract} from './new_contract/new_contract.component';
 import {ScheduleComponent} from './schedule/schedule.component';
 import {ContractDetailsComponent} from './contract_details/contract_details.component';
+import {AdditionalAgreementComponent} from './additional_agreement/additional_agreement.component'
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {ContractDetailsComponent} from './contract_details/contract_details.comp
         RegisterComponent,
         NewContract,
         ScheduleComponent,
-        ContractDetailsComponent
+        ContractDetailsComponent,
+        AdditionalAgreementComponent
     ],
     imports: [
         BrowserAnimationsModule,
