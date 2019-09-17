@@ -6,6 +6,3 @@ WORKDIR /contracts-service
 
 COPY . /contracts-service
 
-RUN ./gradlew build
-
-ENTRYPOINT ["java",-jar","/contracts-web/build/libs/contracts-db-0.0.1-SNAPSHOT.jar"]
