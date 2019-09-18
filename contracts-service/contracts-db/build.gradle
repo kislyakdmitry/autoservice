@@ -40,7 +40,7 @@ task('liquibase-prod') << {
         activities {
             main {
                 changeLogFile changeLog
-                url 'jdbc:postgresql://postgres:5432/contracts-prod'
+                url 'jdbc:postgresql://localhost:5432/contracts-prod'
                 username 'postgres'
                 password 'root'
                 contexts 'prod'

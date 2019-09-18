@@ -1,4 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /app
-COPY contracts-web/build/libs/*.jar app.jar
+COPY employees-web/build/libs/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
+
+
