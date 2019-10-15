@@ -3,7 +3,6 @@ buildscript {
 }
 
 plugins {
-    id "io.spring.dependency-management" version "1.0.5.RELEASE"
     id "org.liquibase.gradle" version "2.0.1"
 }
 
@@ -70,8 +69,4 @@ dependencies {
     liquibaseRuntime('org.postgresql:postgresql:42.2.6')
     liquibaseRuntime('ch.qos.logback:logback-core:1.2.3')
     liquibaseRuntime('ch.qos.logback:logback-classic:1.2.3')
-}
-
-dependencyManagement {
-    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }

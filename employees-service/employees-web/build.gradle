@@ -26,7 +26,7 @@ task runProd(dependsOn:bootRun) {
     gradle.taskGraph.whenReady { graph ->
         if (graph.hasTask(runProd)) {
             bootRun {
-                args = ["--spring.profiles.active=prod"]
+                args = []
             }
         }
     }

@@ -1,0 +1,29 @@
+version: "3"
+services:
+  contracts-service:
+    build: contracts-service/
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    network_mode: "host"
+    depends_on:
+      - cars-service
+  cars-service:
+    build: cars-service/
+    expose:
+      - 8081
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    network_mode: "host"
+  employees-service:
+    build: employees-service/
+    expose:
+      - 8082
+    ports:
+      - 8082:8082
+    restart: unless-stopped
+    network_mode: "host"
+

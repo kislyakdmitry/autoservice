@@ -18,19 +18,20 @@ bootJar {
     version = '0.0.1-SNAPSHOT'
 }
 
-bootRun{
+bootRun {
     args = ["--spring.profiles.active=dev"]
 }
 
-task runProd(dependsOn:bootRun) {
+task runProd(dependsOn: bootRun) {
     gradle.taskGraph.whenReady { graph ->
         if (graph.hasTask(runProd)) {
             bootRun {
-                args = ["--spring.profiles.active=prod"]
+                args = []
             }
         }
     }
 }
+
 
 test {
     systemProperty 'spring.profiles.active', 'test'
@@ -45,8 +46,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.6.RELEASE'
-   // compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.1.7.RELEASE'
-    
+
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.7.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.1.7.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-activemq', version: '2.1.7.RELEASE'
@@ -58,7 +58,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.9'
 
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
-    
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     compileOnly 'org.projectlombok:lombok:1.18.8'

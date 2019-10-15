@@ -31,7 +31,7 @@
                              schemaName="public"
                              tableName="cars"/>
     </changeSet>
-    <changeSet author="dmitry" id="2" context="dev">
+    <changeSet author="dmitry" id="2" context="dev, prod">
         <sqlFile dbms="postgresql"
                  encoding="utf8"
                  endDelimiter="\nGO"
